@@ -22,7 +22,8 @@ alias \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
-	cat="bat " 
+	cat="bat " \
+	ip="ip -color=auto"
 
 # These common commands are just too long! Abbreviate them.
 alias \
@@ -35,13 +36,11 @@ alias \
 	e="$EDITOR" \
 	v="$EDITOR" \
 	lock="betterlockscreen -l" \
-	xr="sudo xbps-remove -R" \
 	flatu="flatpak --user" \
 	flati="flatpak --user install" \
 	z="zathura"
 
 alias \
-	magit="nvim -c MagitOnly" \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
 	tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" \

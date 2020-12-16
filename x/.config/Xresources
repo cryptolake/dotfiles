@@ -7,48 +7,48 @@
 ! Base16 Tomorrow Night
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
-#define base00 #1d1f21
-#define base01 #282a2e
-#define base02 #373b41
-#define base03 #969896
-#define base04 #b4b7b4
-#define base05 #c5c8c6
-#define base06 #e0e0e0
-#define base07 #ffffff
-#define base08 #cc6666
-#define base09 #de935f
-#define base0A #f0c674
-#define base0B #b5bd68
-#define base0C #8abeb7
-#define base0D #81a2be
-#define base0E #b294bb
-#define base0F #a3685a
+/* #define base00 #1d1f21 */
+/* #define base01 #282a2e */
+/* #define base02 #373b41 */
+/* #define base03 #969896 */
+/* #define base04 #b4b7b4 */
+/* #define base05 #c5c8c6 */
+/* #define base06 #e0e0e0 */
+/* #define base07 #ffffff */
+/* #define base08 #cc6666 */
+/* #define base09 #de935f */
+/* #define base0A #f0c674 */
+/* #define base0B #b5bd68 */
+/* #define base0C #8abeb7 */
+/* #define base0D #81a2be */
+/* #define base0E #b294bb */
+/* #define base0F #a3685a */
 
-*foreground:   base05
-#ifdef background_opacity
-*background:   [background_opacity]base00
-#else
-*background:   base00
-#endif
-*cursorColor:  base05
+/* *foreground:   base05 */
+/* #ifdef background_opacity */
+/* *background:   [background_opacity]base00 */
+/* #else */
+/* *background:   base00 */
+/* #endif */
+/* *cursorColor:  base05 */
 
-*color0:       base00
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
+/* *color0:       base00 */
+/* *color1:       base08 */
+/* *color2:       base0B */
+/* *color3:       base0A */
+/* *color4:       base0D */
+/* *color5:       base0E */
+/* *color6:       base0C */
+/* *color7:       base05 */
 
-*color8:       base03
-*color9:       base09
-*color10:      base01
-*color11:      base02
-*color12:      base04
-*color13:      base06
-*color14:      base0F
-*color15:      base07
+/* *color8:       base03 */
+/* *color9:       base09 */
+/* *color10:      base01 */
+/* *color11:      base02 */
+/* *color12:      base04 */
+/* *color13:      base06 */
+/* *color14:      base0F */
+/* *color15:      base07 */
 
 /* name		dark	light */
 /* black	0	8 */
@@ -61,24 +61,24 @@
 /* white	7	15 */
 
 /* !! gruvbox: */
-/* *.color0: #1d2021 */
-/* *.color1: #cc241d */
-/* *.color2: #98971a */
-/* *.color3: #d79921 */
-/* *.color4: #458588 */
-/* *.color5: #b16286 */
-/* *.color6: #689d6a */
-/* *.color7: #a89984 */
-/* *.color8: #928374 */
-/* *.color9: #fb4934 */
-/* *.color10: #b8bb26 */
-/* *.color11: #fabd2f */
-/* *.color12: #83a598 */
-/* *.color13: #d3869b */
-/* *.color14: #8ec07c */
-/* *.color15: #ebdbb2 */
-/* *.color256: #1d2021 */
-/* *.color257: #ebdbb2 */
+*.color0: #1d2021
+*.color1: #cc241d
+*.color2: #98971a
+*.color3: #d79921
+*.color4: #458588
+*.color5: #b16286
+*.color6: #689d6a
+*.color7: #a89984
+*.color8: #928374
+*.color9: #fb4934
+*.color10: #b8bb26
+*.color11: #fabd2f
+*.color12: #83a598
+*.color13: #d3869b
+*.color14: #8ec07c
+*.color15: #ebdbb2
+*.color256: #1d2021
+*.color257: #ebdbb2
 
 /* !! gruvbox light: */
 /* *.color0: #fbf1c7 */

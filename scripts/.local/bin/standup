@@ -1,5 +1,0 @@
-#!/bin/sh
-while [ True ]; do
-	sleep 1800
-	notify-send "Stand UP now!"
-done

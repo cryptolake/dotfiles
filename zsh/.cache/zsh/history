@@ -1,0 +1,1083 @@
+src
+cd .local
+mkd src
+git clone https://github.com/lukesmith/dwm
+git clone https://github.com/lukesmith/dwm/
+git clone https://github.com/lukesmithxyz/dwm
+v -v
+git clone https://github.com/lukesmithxyz/dwmblocks
+git clone https://github.com/lukesmithxyz/st
+pacman -S --needed git base-devel
+sudo pacman -S --needed git base-devel
+cd /etc/pacman.d/
+ls
+ls
+pacman -S exa 
+sudo pacman -S exa 
+ls
+v mirrorlist
+vim mirrorlist
+pacman -S intel-ucode
+sudo pacman -S intel-ucode
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+git clone https://aur.archlinux.org/yay.git
+sudo git clone https://aur.archlinux.org/yay.git
+cd yay
+cd ..
+sudo mv yay ~/
+cd
+ls
+l
+chown -R crypto:crypto yay
+sudo chown -R crypto:crypto yay
+l
+cd yay
+ls
+makepkg -si
+sudo makepkg -si
+makepkg -si
+sudo pacman -S --needed git base-devel
+makepkg -si
+yay
+..
+ls
+mv README.MD dotfiles
+rm -rf yay
+yay libxft
+src
+ls
+l
+local-gen
+locale-gen
+sudo locale-gen
+rm /etc
+sudo -r /etc/Tunis
+sudo rm /etc/localtime
+sudo ln -sf /usr/share/zoneinfo/Africa/Tunis /etc/localtime
+reboot
+cd 
+ls
+ls
+cd ..
+ls
+cd root/
+ls
+cd ..
+ls
+cd home/
+ls
+cd crypto/
+ls
+man find
+startx
+yay startx
+src
+ls
+l
+cd
+ls
+cd dotfiles
+ls
+cd 
+ls
+find / dwm
+cd /
+ls
+cd root
+su
+ls
+src
+git clone https://github.com/lukesmithxyz/dwm
+git clone https://github.com/lukesmithxyz/st
+git clone https://github.com/lukesmithxyz/dwmblocks
+cd dwm
+ls
+make && sudo make install
+cd ../dwmblocks
+make && sudo make install
+cd ../st
+make && sudo make install
+yay xinit
+dwmblocks
+sc
+ls
+src
+git clone https://github.com/lukesmithxyz/voidrice
+cp -r voidrice/.local/bin/statusbar ~/.local/bin
+dwmblocks
+pkill dwm
+htop
+htop
+yay -S htop
+yay mesa
+yay -S xf86-video-intel
+ls
+sc
+v sysact
+nano
+yay -S nano
+nano sysact
+src
+git clone https://github.com/lukesmithxyz/dmemi
+git clone https://github.com/lukesmithxyz/dmenu
+cd dmenu
+ls
+make
+sudo make install
+../dwm
+ls
+cff
+cf
+src
+cp voidrice/.config/fontconfig ~/.config/
+cp -r voidrice/.config/fontconfig ~/.config/
+cf
+cd fontconfig
+ls
+nano fonts.conf
+yay -S xf86-video-intel
+cd /etc
+sudo nvim pacman.conf
+yay
+reboot
+yay -S libxft
+reboot
+htop
+xrdb
+yay -S mpd xcompmgr
+yay -S mpd xcompmgr redshift xss-lock dunst
+yay -R neovim
+src
+git clone https://github.com/neovim/neovim
+yay -S ranger
+yay -S ueberzug
+yay highlight
+yay -S highlight
+nano .xprofile
+yay libertine
+yay joy pixels
+yay biolinum
+yay noto sans
+yay noto font
+yay liberation
+ls
+src
+neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+yay cmake
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+yay -S unzip
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+yay -S fzf
+yay -S tmux
+cf
+cd fontconfig
+nano fonts.conf
+v
+v
+htop
+weath
+timedatectl
+timedatectl list-timezones
+timedatectl set-timezone Africa/Tunis
+timedatectl
+hwclock --systohc
+sudo hwclock --systohc
+ls
+v
+pip
+yay pip
+yay -S pip
+yay pip python
+pip install neovim
+timedatectl
+time
+ls
+l
+v
+timedatectl set-time "2021-01-02 15:09"
+sudo hwclock --systohc
+v .zprofile
+src
+cd dwm
+ls
+v
+v config.h
+make && sudo make install
+mpv https://www.youtube.com/watch?v=VWc5CkA5Nvw
+mpv "https://www.youtube.com/watch?v=VWc5CkA5Nvw"
+yay -S youtube-dl
+mpv "https://www.youtube.com/watch?v=VWc5CkA5Nvw"
+src
+cd dwm
+make
+make && sudo make install
+mkd Pictures
+mkd Vidoes
+mkd Documents
+ranger
+ranger
+src
+cd dwm
+ls
+v config.h
+make && sudo make install
+ranger
+src
+cd dwm
+ls
+v config.h
+make && sudo make install
+$BROWSER
+sr
+sc
+v spotify
+v discord
+rm -rf Pictures
+D
+ext Pictures-20210102T142453Z-001.zip
+ls
+mv Pictures-20210102T142453Z-001/Pictures ../
+ls
+rm -rf *
+yay xwallpaper
+pp
+ranger
+v .zprofile
+startx
+yay tsp
+startx
+yay -S mpc
+yay =S xcape
+yay -S xcape
+startx
+sc
+v setbg
+cd
+v
+yay -S npm
+startx
+yay pamixer
+startx
+yay libxft
+startx
+remaps
+mpd
+yay -S ncmpcpp
+systemctl suspend-then-hibernate
+yay betterlock
+yay xss lock
+v .xprofile
+yay -S bat
+cfa
+cfa
+cd /etc
+v pacman.conf
+yay
+yay libxft
+sc
+v sysact
+src
+cd dwmblocks
+ls
+v config.h
+make
+sudo make install
+src
+cd dwmblocks
+ls
+v config.h
+cd ../dwm
+v config.h
+make
+sudo make install
+yay pulse mixer
+yay -S pulsemixer
+pulsemixer
+pulseaudio -k
+pulseaudio
+yay alsamixer
+yay alsa
+alsamixer
+yay alsa-utils
+D
+ls
+ext prog-20210102T150530Z-001.zip
+mv prog-20210102T150530Z-001/prog ../Documents
+rm -rf *
+pro
+d
+ls
+cd prog
+ls
+cd pas
+cd pascal
+ls
+git clone https://github.com/cryptolake/euler
+rm *
+git clone https://github.com/cryptolake/euler
+yay -S fd
+dunst
+cd /etc
+ls
+cd pulse
+ls
+v daemon.conf
+pulseaudio
+fd
+f
+fd
+f
+pro
+ls
+betterlockscreen -u Pictures/walls/wallhaven-13z2zw.png
+sc
+v sysact
+yay chatterino
+pro
+cfa
+sc
+v chatterino
+./chatterino
+yay fuse
+chatterino
+yay fuse
+cd /etc
+ls
+v pulse
+cd /var
+ls
+cd log
+ls
+v pacman.log
+ls
+v pacman.log
+cd
+yay noto sans
+yay noto fong
+yay noto font
+v .xprofile
+v
+yay maim
+yay xdotool
+sc
+v maimpick
+timedatectl set-time "22:15"
+hwclock --systohc
+sudo hwclock --systohc
+yay brave
+yay -S libnotify
+yay jetbrains mono
+yay jetbrains
+src
+cd dwmblocks
+v config.h
+make
+sudo make install
+sc
+ls
+cd statusbar
+ls
+v sb-battery
+v sb-battery
+v sb-battery
+ls
+v sb-battery
+ls
+v sb-clock
+v sb-forecast
+v sb-volume
+v sb-internet
+yay hack font
+yay ttf hack
+cf
+cd fontconfig
+ls
+v fonts.conf
+ls
+v
+fc-list | grep "Hack"
+fc-list | grep noto
+fc-list | grep notosans
+fc-list | grep NotoSans
+fc-list | grep NotoSerif
+fc-cache 
+htop
+htop
+htop
+yay -Rs redshift
+v .xprofile
+htop
+systemctl disable acpid.service
+systemctl stop acpid.service
+sudo mkinitcpio -P\
+
+yay linux firmware
+v .x
+v .xprofile
+v .xprofile
+sc
+v remaps
+yay lazarus
+pro
+ls
+fpc euler60.pas
+yay fpc
+yay emacs
+vfz
+cd .emacs.d
+ls
+v ei
+v init.el
+v init.el
+cd .emacs.d/\
+cd .emacs.d/
+ls
+v init.el
+emacs --debug-init
+cd .emacs.d/\
+cd .emacs.d/
+v init.el
+cd .emacs.d/\
+cd .emacs.d/
+ls
+v init.el
+cd
+ls
+cd dotfiles
+ls
+rm ema
+rm -rf emacs
+cf
+cd 
+rm -rf .emacs.d
+emacs -nw
+pro
+cd euler
+ls
+fpc euler60.pas
+v euler60.pas
+fd
+yay -S ripgrep
+cd .emacs.d/bin
+./doom help env
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+ls
+pro
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+cd .emacs.d
+ls
+v init.e
+v init.el
+ls
+cd core
+ls
+cd autoload
+ls
+..
+.
+..
+ls
+cd bin
+ls
+..
+ls
+cd modules
+ls
+..
+ls
+cd bin
+ls
+v doom
+cfv
+yay xclip
+v .zprofile
+v .zprofile
+v .zprofile
+pro
+ls
+v euler60.pas
+doom
+cd .doom.d
+ls
+v init.el
+.emacs.d/bin/doom sync
+yay gruvbox
+cd dotfiles
+ls
+rm themes
+rm -rf themes
+rm -rf .themes
+ls
+cf
+v Xresources
+htop
+src
+cd voidrice
+cd .config/
+ls
+cd..
+..
+..
+..
+cf
+src
+rm -rf voidrice
+yay bspwm
+yay -S xdo sxhkd
+ls
+git clone https://github.com/Zachu/voidrice
+cd voidrice
+ls
+cd .config
+ls
+cp -r bspwm ssxhdk ~/.config
+cp -r sxhdk ~/.config
+cp -r sxhkd ~/.config
+cf
+cd polybar
+ls
+v config
+src
+cd voidrice/.config
+cp -r polybar/ ~/.config
+pro
+ls
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+v
+fpc euler60.pas
+./euler60
+pro
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+./euler60
+pro
+l
+fps euler60.pas
+fpc euler60.pas
+cf
+cd nvim
+v init.vim
+cf
+cd bspwm
+ls
+v bspwmrc
+cd bspwm
+ls
+v bspwmrc
+v bspwmrc
+polybars.sh
+yay -S polybar
+cfv
+cfv
+cfv
+cfv
+v .xinitrc
+pkill bspwm
+ls
+ls
+v .xinitrc
+cf
+cd bspwm
+ls
+v bspwm
+ls
+rm -rf bspwm
+ls
+v bspwmrc
+iwctl
+reboot
+ls
+cd /dev/usb
+ls
+cd ..
+ls
+fin .
+find .
+fd
+fd | grep bat
+fd | grep BAT0
+yay -S calcurse newsboat
+ls
+yay inconsolata
+yay inconsolata
+yay symbola
+showclip
+yay showclip
+yay screenkwy
+yay screenkey
+screenkey
+cd .config/sxhkd
+ls
+v sxhkdrc
+yay nerd font
+cf
+cd polybar
+ls
+v config
+xsetroot -cursor_name left_ptr
+v .xprofile
+pro
+fpc euler60.pas
+./euler60
+cf
+cd sxhkd
+ls
+v sxhkdrc
+cf
+mkd wget
+cf
+cd wget
+touch wgetrc
+cd .doom.d
+ls
+wget https://www.emacswiki.org/emacs/download/visws.el
+yay -S wget
+wget https://www.emacswiki.org/emacs/download/visws.el
+wget https://www.emacswiki.org/emacs/download/visws.el
+wget https://www.emacswiki.org/emacs/download/visws.el
+v init.el
+doom
+pro
+ls
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+cfs
+cf
+cd sxhkd
+ls
+v sxhkdrc
+cfv
+cf
+cd bspwm
+v bspwmrc
+emacsclient -e '(open-scratch-frame)'
+emacsclient 
+emacsclient g
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+.emacs.d/bin/doom sync
+bspc desktop -f 2
+cf
+cd bspwm
+ls
+v bspwmrc
+./bspwmrc
+cf
+cd sxhkd
+ls
+v sxhkdrc
+pro
+ls
+v .xprofile
+v .zprofile
+e
+cfa
+cfa
+pro
+cd euler
+ls
+fpc euler60.pas
+./bspwmrc
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+calc
+yay -S calc
+calc 
+D
+gcc 60.cpp
+ls
+pro
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+./euler60
+fpc euler60.pas
+./euler60
+ls
+rm \
+rm \\ 
+fpc euler60.pas
+rm \\ 
+./euler60
+rm \\ 
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+./euler60
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+fpc euler60.pas
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+fpc euler60.pas
+./euler60
+D
+pro
+fpc euler12.pas
+fpc euler12.pas
+./euler12
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+yay emacs
+yay gccemacs
+pro
+fpc euler12.pas
+fpc euler12.pas
+./euler12
+python
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+fpc euler12.pas
+./euler12
+doom
+cd .doom.d
+rm visws.el
+pgrep -u $USER "\bdwm$"
+pgrep -u $USER "\bspwm$"
+pgrep -u $USER bspwm
+sysact
+sysact
+sysact
+sysact
+sysact
+sysact
+sysact
+man shutdown
+sysact
+shutdown -c
+cf
+cd sxhkd
+v sxhkdrc
+v
+groff
+dic
+v
+vim
+crypt
+man groff
+man latex
+yay latec
+yay latex
+pro
+ls
+v euler6.py
+emacs euler6.py
+rm euler6.py
+yay bibtex
+pip install beautifulsoup
+pip install beautifulsoup4
+pip install requests
+yay spotify
+yay spotify qt
+yay spotify qt
+yay spotify
+spotifyd
+man spotifyd
+sc
+rm  spotify
+man spotifyd
+spotifyd -h
+yay -Rs spotifyd
+yay kdeconnect
+man usbmuxd
+ip addr
+yay kdeconnect
+yay kdeconnect
+src
+cd voidrice
+ls
+cd .config/n
+cd .config/
+ls
+cd i3
+sl
+ls
+ls
+cd
+cd dotfiles
+ls
+mkd bspw
+mv bspw bspwm
+mkd sxhkd
+ls
+mkd fontconfig
+cd bspwm
+mkd .config/
+cd ..
+ls
+cd mpv
+l
+cd ..
+cd sxhkd
+mkd .config/
+..
+cp -r ~/.config/sxhkd sxhkd/.config
+cp -r ~/.config/bspwm bspwm/.config
+sc
+cd statusbar
+ls
+cd ..
+rm -rf statusbar
+i3
+cf
+ls
+rm -rf sxhkd bspwm
+ls
+cd dotfiles
+ls
+stow bspwm
+stow sxhkd
+cf
+cd bspwm
+ls
+vim bspwmrc
+..
+cd sxhkd
+ v sxhkdrc
+v .zprofile
+sc
+v remaps
+doom
+v .xprofile
+vim .zprofile
+echo $PATH
+doom
+v
+ls
+cd /srv
+ls
+cd ..
+ls
+cd lib
+ls
+..
+ls
+cd dev
+ls
+..
+iwctl
+yay -Rs kdeconnect
+yay kdeconnect
+yay gconnect
+yay gconnect
+gconnectd
+pkill gconnectd
+yay -Rs gconnect-git
+yay gsconnect
+yay gsconnect
+yay kdeconnect
+kdeconnect-cli
+v .zprofile
+v .xprofile
+ps auxf | grep dbus
+cd /usr/lib/
+ls
+./kdeconnectd
+htop
+pkill pulseaudio
+htop
+kdeconnect-cli
+cd /etc/xdg
+cd autostart
+ls
+yay -S dex
+v ls
+ls
+dex
+dex -a
+dex -a
+dex -ad
+dex -a
+v .xprofile
+pulseaudio
+htop
+cfa
+youtube-dl https://www.youtube.com/watch?v=SFbd_OEz1xo
+youtube-dl "https://www.youtube.com/watch?v=SFbd_OEz1xo"
+youtube-dl -h
+youtube-dl -h | grep list
+youtube-dl -F "https://www.youtube.com/watch?v=SFbd_OEz1xo"
+youtube-dl -F "https://www.youtube.com/watch?v=SFbd_OEz1xo" > qua
+yay freezer
+D
+ls
+chmod +x Freezer-1.1.9.AppImage
+./Freezer-1.1.9.AppImage
+mv Downloads/Freezer-1.1.9.AppImage ~/.local/bin/freezer
+start-pulseaudio-x11
+cd /etc/xdg/autostart
+ls
+v pulseaudio.desktop
+i3
+d
+git clone https://github.com/Zachu/voidrice
+cd voidrice
+ls
+cd dotfiles
+mkd i3
+cd i3
+mkd .config/i3/
+cd .config/i3
+cp ~/Documents/voidrice/.config/i3/config ./
+ls
+v config
+cf
