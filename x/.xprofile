@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This file runs when a DM logs you into a graphical session.
+# If you use startx/xinit like a Chad, this file will also be sourced.
+
+# Fix Gnome Apps Slow  Start due to failing services
+# Add this when you include flatpak in your system
+
+mpd &			# music player daemon-you might prefer it as a service though
+
+remaps &		# run the remaps script, switching caps/esc and more; check it for more info
+
+xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
+
+redshift &
+picom &		# xcompmgr for transparency
+setbg &
+dunst &			# dunst for notifications
+xrandr --output LVDS1 --off &
+xsetroot -cursor_name left_ptr &			#fix bspwm cursor
+xset r rate 300 50 &	# Speed xrate up

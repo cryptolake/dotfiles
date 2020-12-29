@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $HOME/Documents/prog/jalelbot
+python $HOME/Documents/prog/jalelbot/jalelbot.py
