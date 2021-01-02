@@ -97,10 +97,10 @@
 ;   (evil-collection-outline-bind-tab-p nil)
 ;   :config
 ;   (evil-collection-init))
-; (use-package doom-modeline
-;   :ensure t
-;   :init (doom-modeline-mode 1)
-;   :custom ((doom-modeline-height 15)))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
 
 (use-package which-key
   :init (which-key-mode)

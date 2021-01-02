@@ -35,11 +35,9 @@ alias \
 	e="$EDITOR" \
 	v="$EDITOR" \
 	lock="betterlockscreen -l" \
-	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	flatu="flatpak --user" \
 	flati="flatpak --user install" \
-	xq="xbps-query -Rs" \
 	z="zathura"
 
 alias \

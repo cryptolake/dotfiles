@@ -48,7 +48,7 @@ set undodir=/tmp
 set nohlsearch
 set completeopt=menuone,noinsert,noselect
 set completeopt-=preview
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus to use vim regs
 filetype plugin indent on
 set nofoldenable
 
@@ -142,4 +142,14 @@ autocmd FileType pascal setlocal commentstring={%s}
 "vimwiki change default directory
 let g:vimwiki_list = [{'path': '~/Documents/wiki/'}]
 
-cnoremap w!! execute 'silent! write !SUDO_ASKPASS=`which ssh-askpass` sudo tee % >/dev/null' <bar> edit!
+
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" system clipboard
+nnoremap gp "+p
+nnoremap gP "+P
+vnoremap gp "+p
+vnoremap gP "+P
+nnoremap gy "+y
+vnoremap gy "+y

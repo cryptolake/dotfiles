@@ -15,7 +15,7 @@ export BROWSER="firefox"
 export READER="zathura"
 
 # ~/ Clean-up:
-export XDG_RUNTIME_DIR="$HOME/.cache/xdg_runtime_dir"
+export XDG_RUNTIME_DIR="$HOME/.cache/"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -51,8 +51,8 @@ export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &

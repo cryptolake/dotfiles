@@ -13,8 +13,9 @@ remaps &		# run the remaps script, switching caps/esc and more; check it for mor
 xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
 
 redshift &
-picom &		# xcompmgr for transparency
+xcompmgr &		# xcompmgr for transparency
 setbg &
+xss-lock -- betterlockscreen -l &
 dunst &			# dunst for notifications
 xrandr --output LVDS1 --off &
 xsetroot -cursor_name left_ptr &			#fix bspwm cursor

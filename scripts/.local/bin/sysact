@@ -7,16 +7,14 @@ case "$(readlink -f /sbin/init)" in
 	*runit*) hib="sudo -A zzz" ;;
 	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
 esac
-sus="sudo -A zzz -z"
+
 cmds="\
-🔒 lock		betterlockscreen -l
-🚪 leave i3	i3 exit
-♻ renew i3	i3 restart
-🐻 hibernate	${hib}
- suspend	${sus}
+🔒 lock		slock
+🚪 leave dwm	kill -TERM $(pgrep -u $USER "\bdwm$")
+♻ renew dwm	kill -HUP $(pgrep -u $USER "\bdwm$")
+🐻 hibernate	slock ${hib:-systemctl suspend-then-hibernate -i}
 🔃 reboot	${reb:-sudo -A reboot}
 🖥 shutdown	${shut:-sudo -A shutdown -h now}"
-
 
 choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu)" || exit 1
 

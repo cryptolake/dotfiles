@@ -1,4 +1,4 @@
-#files: 764	version: 5.8
+#files: 769	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -408,6 +408,7 @@ _comps=(
 'fixwpps' '_psutils'
 'fixwwps' '_psutils'
 'flac' '_flac'
+'flatpak' '_flatpak'
 'flex' '_flex'
 'flex++' '_flex'
 'flipdiff' '_patchutils'
@@ -891,6 +892,7 @@ _comps=(
 'nocorrect' '_precommand'
 'noglob' '_precommand'
 'nohup' '_precommand'
+'notmuch' '_notmuch'
 'nova' '_openstack'
 'npm' '_npm'
 'ns' '_hosts'
@@ -922,6 +924,7 @@ _comps=(
 'paplay' '_pulseaudio'
 'parec' '_pulseaudio'
 'parecord' '_pulseaudio'
+'pass' '_pass'
 'passwd' '_users'
 'paste' '_paste'
 'pasuspender' '_pulseaudio'
@@ -1438,6 +1441,7 @@ _comps=(
 'xsetroot' '_x_utils'
 'xsltproc' '_xmlsoft'
 'xsrc' '_xtools'
+'xss-lock' '_xss-lock'
 'xsubpkg' '_xtools'
 'xterm' '_xterm'
 'xtightvncviewer' '_vnc'
@@ -1562,6 +1566,7 @@ _services=(
 
 _patcomps=(
 '*/(init|rc[0-9S]#).d/*' '_init_d'
+'notmuch-*' '_notmuch'
 )
 
 _postpatcomps=(
@@ -1624,10 +1629,11 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bat _bspc _cargo _exa \
-            _fd _gallery-dl _kdeconnect _libinput _mpv \
-            _polybar _polybar_msg _pulseaudio _rg _sv \
-            _sway _swaymsg _xbps _xbps_src _xtools \
+autoload -Uz _alacritty _bat _bspc _cargo _email-notmuch \
+            _exa _fd _flatpak _gallery-dl _kdeconnect \
+            _libinput _mpv _notmuch _pass _polybar \
+            _polybar_msg _pulseaudio _rg _sv _sway \
+            _swaymsg _xbps _xbps_src _xss-lock _xtools \
             _xwallpaper _youtube-dl _zathura _cdr _all_labels \
             _all_matches _alternative _approximate _arg_compile _arguments \
             _bash_completions _cache_invalid _call_function _combination _comp_locale \
