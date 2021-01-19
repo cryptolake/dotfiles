@@ -33,10 +33,14 @@ alias \
 	YT="youtube-viewer" \
 	sdn="sudo shutdown -h now" \
 	f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)' \
-	e="$EDITOR" \
+	e="$VISUAL" \
 	v="$EDITOR" \
 	lock="betterlockscreen -l" \
 	flatu="flatpak --user" \
+	tr="trash" \
+	trl="trash-list" \
+	trr="trash-restore" \
+	trm="trash-rm" \
 	flati="flatpak --user install" \
 	z="zathura"
 

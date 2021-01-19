@@ -6,6 +6,15 @@
 #
 # export TERMINAL="st"
 
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused        $fg		$fg		$bg  $fg	    $fg
+client.unfocused          $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
 # #---Basic Definitions---# #
 set $inner_gaps 2
 set $outer_gaps 2
@@ -18,7 +27,7 @@ set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
 # #---Gaps---# #
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel @
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
@@ -68,11 +77,11 @@ bindsym $mod+Shift+w		exec $term -e iwctl
 bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
 
-bindsym $mod+r 			exec $term -e lf
-bindsym $mod+Shift+r		exec --no-startup-id winresize
+bindsym $mod+r 			exec thunar
+bindsym $mod+Shift+r		exec $term ranger
 
-bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
+bindsym $mod+t			layout toggle tabbed splith
+bindsym $mod+Shift+t		split toggle
 
 bindsym $mod+y			exec $term -e calcurse
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left

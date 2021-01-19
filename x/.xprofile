@@ -1,18 +1,15 @@
 #!/bin/sh
 
 # This file runs when a DM logs you into a graphical session.
-# If you use startx/xinit like a Chad, this file will also be sourced.
 
-dex -a &
 mpd &			# music player daemon-you might prefer it as a service though
-remaps &		# run the remaps script, switching caps/esc and more; check it for more info
-xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
-xsetroot -cursor_name left_ptr &
+# xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
+# xsetroot -cursor_name left_ptr &
+pulseaudio &
+remaps &
+dunst &
+picom &
+launch_polybar &
 redshift &
-xcompmgr &		# xcompmgr for transparency
+# xrandr --output LVDS1 --off &
 setbg &
-xss-lock -- betterlockscreen -l &
-dunst &			# dunst for notifications
-xrandr --output LVDS1 --off &
-xset r rate 300 50 &	# Speed xrate up
-
