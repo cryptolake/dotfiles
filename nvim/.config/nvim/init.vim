@@ -15,10 +15,12 @@ Plug 'steelsojka/completion-buffers'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mboughaba/i3config.vim'
 Plug 'cespare/vim-toml'
+Plug 'mboughaba/i3config.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'sainnhe/gruvbox-material'
 Plug 'mhinz/vim-startify'
 Plug 'SirVer/ultisnips'
+Plug 'morhetz/gruvbox'
 Plug 'honza/vim-snippets'
 Plug 'nvim-lua/completion-nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -35,7 +37,7 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 call plug#end()
 
-colorscheme gruvbox-material
+colorscheme gruvbox
 set title
 set ruler
 set showmatch
@@ -100,6 +102,7 @@ set nofoldenable
 "LSP
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach}
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach}
 lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach}
 lua require'lspconfig'.pasls.setup{ on_attach=require'completion'.on_attach}
 lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach}
@@ -127,12 +130,15 @@ set softtabstop=4
 set tabstop=4
 
 " FZF stuff
-nnoremap gb :Buffers<CR>
-nnoremap gw :Windows<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>bi :Buffers<CR>
+nnoremap <leader>wl :Windows<CR>
+nnoremap <leader>gc :Commits<CR>
+nnoremap <leader>rg :Rg<CR>
+nnoremap <leader><leader> :Files<CR>
 
 " tabs
 nnoremap <leader>tn :tabnew<CR>
+
 " pascal 
 autocmd FileType pascal setlocal commentstring={%s}
 
@@ -163,4 +169,3 @@ vnoremap gy "+y
 let g:completion_chain_complete_list = [
     \{'complete_items': ['lsp','snippet','buffers']}
 \]
-let g:completion_auto_change_source = 1

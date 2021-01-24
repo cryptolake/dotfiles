@@ -8,8 +8,8 @@ mpd &			# music player daemon-you might prefer it as a service though
 pulseaudio &
 remaps &
 dunst &
+thunar --daemon &
 picom &
-launch_polybar &
 redshift &
 # xrandr --output LVDS1 --off &
 setbg &

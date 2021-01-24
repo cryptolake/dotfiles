@@ -1,0 +1,24 @@
+
+[music]
+command=playerctl metadata title
+interval=once
+signal=11
+
+# Guess the weather hourly
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[volume]
+command=volume
+interval=once
+signal=10
+
+[time]
+command=clock
+interval=60
+
+[internet]
+command=internet
+interval=10

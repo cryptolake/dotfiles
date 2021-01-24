@@ -1,11 +1,10 @@
-# vim: filetype=i3
-# File originally by Luke Smith <https://lukesmith.xyz>
-
+# vim: filetype=i3config
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
 # You can set these variables in ~/.profile or ~/.bash_profile if you have it as below:
 #
 # export TERMINAL="st"
 
+font pango:sans-serif 10
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 
@@ -14,6 +13,14 @@ client.focused        $fg		$fg		$bg  $fg	    $fg
 client.unfocused          $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
+
+bar {
+	font pango:mono 10
+	status_command i3blocks
+	position top
+	mode dock
+	modifier None
+}
 
 # #---Basic Definitions---# #
 set $inner_gaps 2
@@ -77,8 +84,8 @@ bindsym $mod+Shift+w		exec $term -e iwctl
 bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
 
-bindsym $mod+r 			exec thunar
-bindsym $mod+Shift+r		exec $term ranger
+bindsym $mod+r 			exec $term ranger
+bindsym $mod+Shift+r		exec thunar
 
 bindsym $mod+t			layout toggle tabbed splith
 bindsym $mod+Shift+t		split toggle
@@ -95,8 +102,8 @@ bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+o			sticky toggle
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
-bindsym $mod+p			exec --no-startup-id mpc toggle
-bindsym $mod+Shift+p		exec --no-startup-id mpc pause
+bindsym $mod+p			exec --no-startup-id muset && pkill -RTMIN+11 i3blocks
+bindsym $mod+Shift+p		exec --no-startup-id mpc clear
 
 bindsym $mod+a			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
 bindsym $mod+Shift+a		exec $term -e pulsemixer
