@@ -17,7 +17,6 @@ Plug 'mboughaba/i3config.vim'
 Plug 'cespare/vim-toml'
 Plug 'mboughaba/i3config.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'sainnhe/gruvbox-material'
 Plug 'mhinz/vim-startify'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
@@ -48,6 +47,7 @@ set bs=2
 set nobackup
 set termguicolors
 set go=a
+set clipboard+=unnamedplus
 set hlsearch
 set mouse=a
 set undofile

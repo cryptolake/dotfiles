@@ -5,21 +5,49 @@
 # export TERMINAL="st"
 
 font pango:sans-serif 10
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
-
+set_from_resource $black i3wm.color0
+set_from_resource $darkred i3wm.color1
+set_from_resource $darkgreen i3wm.color2
+set_from_resource $darkyellow i3wm.color3
+set_from_resource $darkblue i3wm.color4
+set_from_resource $darkmagenta i3wm.color5
+set_from_resource $darkcyan i3wm.color6
+set_from_resource $lightgray i3wm.color7
+set_from_resource $gray i3wm.color8
+set_from_resource $red i3wm.color9
+set_from_resource $green i3wm.color10
+set_from_resource $yellow i3wm.color11
+set_from_resource $blue i3wm.color12
+set_from_resource $magenta i3wm.color13
+set_from_resource $cyan i3wm.color14
+set_from_resource $white i3wm.color15
+set_from_resource $background i3wm.color0
+set_from_resource $foreground i3wm.color7
 # class                 border  backgr. text indicator child_border
-client.focused        $fg		$fg		$bg  $fg	    $fg
-client.unfocused          $bg     $bg     $fg  $bg       $bg
-
-client.background       $bg
+client.focused            $foreground	  $foreground	  $background  $foreground	     $foreground
+client.unfocused          $background     $background     $foreground  $background       $background
+client.focused_inactive	  $background     $background     $foreground  $background       $background
+client.urgent             $background     $background     $foreground  $background       $background
+client.placeholder        $background     $background     $foreground  $background       $background
 
 bar {
 	font pango:mono 10
-	status_command i3blocks
 	position top
 	mode dock
 	modifier None
+        colors {
+        background $background
+        statusline $white
+        separator   $gray
+
+        # colour of border, background, and text
+        focused_workspace   $white $white $black
+        active_workspace    $background $background $foreground
+        inactive_workspace  $background $background $foreground
+		urgent_workspace    $red $red $white
+		}
+	status_command i3blocks
+
 }
 
 # #---Basic Definitions---# #
@@ -34,7 +62,8 @@ set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
 # #---Gaps---# #
-for_window [class="^.*"] border pixel @
+default_border pixel
+for_window [class="^.*"] border pixel 1
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
@@ -231,7 +260,6 @@ for_window [title="mpvfloat"] border pixel 0
 no_focus [title="mpvfloat"]
 
 # #---Function Buttons---# #
-bindsym $mod+F1		exec --no-startup-id groff -mom ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/readme.mom -Tpdf | zathura -
 bindsym $mod+F2		restart
 bindsym $mod+F3		exec --no-startup-id displayselect
 bindsym $mod+F4		exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
@@ -366,4 +394,3 @@ bindsym XF86Documents		exec $term -e lf ~/Documents
 ##bindsym XF86Battery		exec
 ##bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec $netrefresh
-exec polybars.sh

@@ -53,7 +53,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
-export GRAFF_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/graff/settings.toml"
+export GRAFF_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/graff/settings"
 
 [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 [ -z "$DISPLAY" -a "$(tty)" = '/dev/tty1' ] && exec startx
