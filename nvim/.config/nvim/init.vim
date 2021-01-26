@@ -20,6 +20,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'mhinz/vim-startify'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
 Plug 'honza/vim-snippets'
 Plug 'nvim-lua/completion-nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -36,7 +37,8 @@ Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme one
+let g:airline_theme='one'
 set title
 set ruler
 set showmatch

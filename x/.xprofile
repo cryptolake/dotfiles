@@ -2,14 +2,7 @@
 
 # This file runs when a DM logs you into a graphical session.
 
-mpd &			# music player daemon-you might prefer it as a service though
 xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
-# xsetroot -cursor_name left_ptr &
-pulseaudio &
 remaps &
-dunst &
-thunar --daemon &
-picom &
 redshift &
-xrandr --output LVDS1 --off &
 setbg &
