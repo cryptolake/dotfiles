@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# This file runs when a DM logs you into a graphical session.
-
-xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources & #use Xresources colors/settings on startup
-remaps &
-redshift &
-setbg &
