@@ -1,0 +1,27 @@
+#!/bin/bash
+disk=$HOME/Documents/vms/kali.qcow2
+snapdir=$HOME/Documents/vms/snapshots/
+
+case $1 in
+	reset)
+	qemu-system-x86_64 -cdrom $iso  -boot order=d -drive file=$disk,format=raw -m 2G -enable-kvm & ;;
+
+	open)
+	qemu-system-x86_64 \
+		-boot \
+		order=d \
+		-drive \
+		file=$disk,format=qcow2 \
+		-m 2G \
+		-enable-kvm \
+		-chardev \
+		socket,path=/tmp/port1,server,nowait,id=port1-char \
+		-net user,hostfwd=tcp::2222-:22 \
+		-net nic \
+		-vga qxl \
+		-device virtio-serial-pci -spice port=5930,disable-ticketing -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 -chardev spicevmc,id=spicechannel0,name=vdagent & spicy -h localhost -p 5930 --spice-preferred-compression=off & disown
+		;;
+	snap) 
+		cp $disk $snapdir
+esac
+

@@ -1,0 +1,131 @@
+#!/bin/bash
+create-config()
+{
+	if [ ! -d $cfdir ]; then
+		mkdir $cfdir
+	fi
+template="
+#!/bin/bash  \n
+ #project name and direcotry\n
+ name=projname \n
+ root=~/Documents/prog/ \n
+ \n
+ #panes with 'pane1_cmd:pane2_cmd,layout'\n
+ main_panes='nvim:zsh,main-vertical'\n
+ \n
+ \n
+ \n
+ \n
+ # additional windows \n
+ #Always put the window definition inside '' like and example above. \n
+ \n
+ #windows=('window_cmd:pane1_cmd'.'window2_cmd:pane2_cmd') \n
+ #each window definition is seperated by . \n
+ windows=('python:gdb,main-vertical'.'zsh,main-vertical') \n
+"
+	if [ ! -f $cfile ]; then
+		touch $cfile
+		echo -e $template > $cfile
+	fi
+	$EDITOR $cfile
+}
+
+tmuxination()
+{
+	source $cfile
+	local IFS="."
+	cd $root
+	main_layout="$(echo $main_panes | cut -d',' -f 2)"
+	main_layout="$(echo $main_layout | cut -d' ' -f 1)"
+	main_panes="$(echo $main_panes | cut -d',' -f 1)"
+	cmd="$(echo $main_panes | cut -d':' -f 1)"
+	tmux new-session -d -s $name $cmd
+	
+	panes=($(echo $main_panes | tr ":" "."))
+	for pane in ${panes[*]:1}; do
+		tmux split-window -t $name:0 $pane;
+	done
+	tmux select-layout -t $name:0 $main_layout
+
+  ((i=1))
+	for window in ${windows[*]};
+	do
+		winlayout="$(echo $window | cut -d',' -f 2)";
+		winlayout="$(echo $winlayout | cut -d' ' -f 1)";
+		window="$(echo $window | cut -d',' -f 1)";
+		cmdw="$(echo $window | cut -d':' -f 1)";
+		#echo 'making window '$i
+		tmux new-window -t $name:$i $cmdw;
+		#sleep 1
+
+		wpanes=($(echo $window | tr ":" "."))
+		for wpane in "${wpanes[@]:1}"; do
+			#echo 'making pane '$wpane' in window '$i
+			tmux split-window -t $name:$i $wpane
+		done
+		tmux select-layout -t $name:$i $winlayout
+		((i+=1));
+	done
+
+	tmux select-window -t $cmd
+	tmux attach-session -E -t $name
+}
+
+
+cfdir="$XDG_CONFIG_HOME/tmuxcator"
+
+case $1 in
+	new)
+		if [ ! -z "$2" -a "$2" != " " ]; then 
+		cfile=$cfdir/$2
+		create-config
+		else 
+			echo "check the <name> of the project"
+		fi
+		;;
+	list)
+		ls $cfdir
+		;;
+	edit)
+	if [ ! -z "$2" -a "$2" != " " ]; then 
+		cfile=$cfdir/$2
+		$EDITOR $cfile
+		else 
+			echo "check the <name> of the project"
+	fi
+		;;
+	o)
+		if [ ! -z "$2" -a "$2" != " " ]; then 
+		cfile=$cfdir/$2
+		tmuxination
+		else 
+			echo "check the <name> of the project"
+		fi
+		;;
+	rm)
+		if [ ! -z "$2" -a "$2" != " " ]; then 
+		cfile=$cfdir/$2
+		rm $cfile
+		else 
+			echo "check the <name> of the project"
+		fi
+		;;
+	help)
+	echo "Tmuxinator Commands:
+	new  <name>: new config with name of <name>.
+	o <name>: open tmux <name> session.
+	edit <name>: edit <name> config.
+	list : list configs.
+	rm <name>: delete <name> config.
+	help : show this."
+		;;
+	*)
+	echo "Tmuxinator Commands:
+	new  <name>: new config with name of <name>.
+	o <name>: open tmux <name> session.
+	edit <name>: edit <name> config.
+	list : list configs.
+	rm <name>: delete <name> config.
+	help : show this."
+		;;
+esac
