@@ -2,9 +2,6 @@ let mapleader =' '
 
 runtime ./plugins.vim
 colorscheme gruvbox
-let g:airline_theme='gruvbox'	
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 set incsearch	
 set hlsearch	
 set bs=2	
@@ -22,32 +19,27 @@ set completeopt=menuone,noselect
 filetype plugin indent on
 " let g:deoplete#enable_at_startup = 1
 	" nnoremap c "_c
-	set nocompatible
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
+set nocompatible
+syntax on
+set encoding=utf-8
+set number relativenumber
 " Enable autocompletion:
-	set wildmode=longest,list,full
+set wildmode=longest,list,full
 " Disables automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
-
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+set splitbelow splitright
 
 
 " Commentary 
-	autocmd FileType pascal setlocal commentstring={%s} 
+autocmd FileType pascal setlocal commentstring={%s} 
 
-
-
-
+hi Normal guibg=NONE ctermbg=NONE
 
 runtime ./maps.vim 
 runtime ./compe.vim
+runtime ./telescope.vim 
 runtime ./treesitter.vim
 runtime ./lsp.vim
 runtime ./lualine.vim
