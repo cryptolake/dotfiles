@@ -22,8 +22,8 @@ client.background       $bg
  #}
 
 # #---Basic Definitions---# #
-set $inner_gaps 0
-set $outer_gaps 0
+set $inner_gaps 7
+set $outer_gaps 5
 set $term --no-startup-id kitty
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
@@ -368,4 +368,3 @@ bindsym XF86Documents		exec $term -e lf ~/Documents
 bindsym XF86WLAN		exec $netrefresh
 
 exec autostart 
-exec ~/.config/polybar/forest/launch.sh  &
