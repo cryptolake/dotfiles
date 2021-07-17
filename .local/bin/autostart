@@ -17,11 +17,9 @@
 #dbus-launch emacs --daemon &
 #other
 picom --config "$HOME/.config/picom.conf" &
-flamehot &
 remaps &
 unclutter &
 setbg &
-dunst &
 mpd &
 #ibus-daemon &
 #uim-toolbar-gtk3-systray & #uim Japanses Input

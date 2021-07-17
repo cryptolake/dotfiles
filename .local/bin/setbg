@@ -19,6 +19,8 @@ esac
 # If pywal is installed, use it.
 command -v wal >/dev/null 2>&1 &&
 	wal -i "$trueloc" -o "${XDG_CONFIG_HOME:-$HOME/.config}/wal/postrun" >/dev/null 2>&1 &&
-	pidof dwm >/dev/null && xdotool key super+F12
+	wpg -a "$trueloc" >/dev/null 2>&1 &&
+	wpg -s "$trueloc" >/dev/null 2>&1 &&
+	pidof dwm >/dev/null && xdotool key super+F2
 
 xwallpaper --zoom "$bgloc"

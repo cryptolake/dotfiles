@@ -8,6 +8,7 @@ nnoremap <leader>n  :NvimTreeToggle<CR>
 
 "telescope
 " Find files using Telescope command-line sugar.
+
 nnoremap <leader>ff <cmd>Telescope find_files <cr>
 nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
 nnoremap <leader>fb <cmd>Telescope buffers    <cr>
@@ -33,9 +34,4 @@ nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
-
-
-" Expand
-imap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'
-smap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'
 

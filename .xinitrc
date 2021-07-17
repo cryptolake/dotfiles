@@ -1,2 +1,2 @@
 #!/bin/bash
-i3 
+startxfce4 

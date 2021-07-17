@@ -1,12 +1,13 @@
 let mapleader =' '
 
 runtime ./plugins.vim
-colorscheme gruvbox
+lua require('init')
+runtime ./maps.vim 
+colorscheme wal
 set incsearch	
 set hlsearch	
 set bs=2	
 set nobackup	
-set termguicolors
 set go=a
 set clipboard+=unnamedplus
 set background=dark
@@ -37,9 +38,3 @@ autocmd FileType pascal setlocal commentstring={%s}
 
 hi Normal guibg=NONE ctermbg=NONE
 
-runtime ./maps.vim 
-runtime ./compe.vim
-runtime ./telescope.vim 
-runtime ./treesitter.vim
-runtime ./lsp.vim
-runtime ./lualine.vim
