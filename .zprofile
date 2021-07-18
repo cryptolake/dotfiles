@@ -6,7 +6,7 @@
 # to clean up.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':')"
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin"
 
 # Default programs:
 export EDITOR="nvim"

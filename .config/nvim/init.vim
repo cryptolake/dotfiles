@@ -1,14 +1,15 @@
 let mapleader =' '
 
 runtime ./plugins.vim
-lua require('init')
+lua require('crypto')
 runtime ./maps.vim 
-colorscheme wal
+colorscheme gruvbox
 set incsearch	
 set hlsearch	
 set bs=2	
 set nobackup	
 set go=a
+set termguicolors
 set clipboard+=unnamedplus
 set background=dark
 set hlsearch
@@ -38,3 +39,5 @@ autocmd FileType pascal setlocal commentstring={%s}
 
 hi Normal guibg=NONE ctermbg=NONE
 
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!

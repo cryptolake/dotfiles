@@ -1,6 +1,6 @@
-telescope = require("telescope")
+Telescope = require("telescope")
 
-telescope.setup(
+Telescope.setup(
     {
         defaults = {
             vimgrep_arguments = {

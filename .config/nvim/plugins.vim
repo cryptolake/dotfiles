@@ -16,14 +16,14 @@ Plug 'honza/vim-snippets'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'bling/vim-bufferline'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'dylanaraps/wal.vim'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'rktjmp/lush.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'npxbr/gruvbox.nvim'
-Plug 'neovim/nvim-lspconfig'
+Plug 'cryptolake/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-compe'
@@ -32,5 +32,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'ap/vim-css-color'
 Plug 'hoob3rt/lualine.nvim'
+Plug 'akinsho/nvim-bufferline.lua'
 call plug#end()	
 
