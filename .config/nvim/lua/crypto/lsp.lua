@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 local lspinstall = require('lspinstall')
 
-lspconfig.pasls.setup{}
 
 local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

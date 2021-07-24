@@ -1,3 +1,4 @@
+ require('crypto.plugins')
  require('crypto.lsp')
  require('crypto.luamaps')
  require('crypto.compe')

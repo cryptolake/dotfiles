@@ -1,2 +1,3 @@
 #!/bin/bash
-startxfce4 
+. "$HOME/.xprofile"
+awesome 

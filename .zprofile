@@ -11,7 +11,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.lo
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="brave"
+export BROWSER="brave --enable-features=VaapiVideoDecoder"
 export READER="zathura"
 
 # ~/ Clean-up:
@@ -48,6 +48,7 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export MOZ_X11_EGL=1
+export MOZ_DISABLE_RDD_SANDBOX=1
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then

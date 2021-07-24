@@ -28,4 +28,4 @@ nnoremap <silent><leader>b[ :BufferLineMovePrev<CR>
 " These commands will sort buffers by directory, language, or a custom criteria
 nnoremap <silent><leader>be :BufferLineSortByExtension<CR>
 nnoremap <silent><leader>bd :BufferLineSortByDirectory<CR>
-
+nnoremap <silent><leader>bc :bd<CR>

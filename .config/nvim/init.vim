@@ -1,9 +1,14 @@
 let mapleader =' '
+if ! isdirectory(system('echo -n "${XDG_DATA_HOME:-$HOME/local/share}/nvim/site/pack/packer/start/packer.nvim"'))	
+	echo 'Downloading Packer.nvim to manage plugins...'	
+	silent !git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+	autocmd VimEnter * PackerInstall
+endif	
 
-runtime ./plugins.vim
 lua require('crypto')
 runtime ./maps.vim 
 colorscheme gruvbox
+
 set incsearch	
 set hlsearch	
 set bs=2	
@@ -16,7 +21,7 @@ set hlsearch
 set mouse=a
 set nohlsearch
 set undofile
-set undodir=/tmp
+set undodir=~/.local/share/nvim/undo
 set completeopt=menuone,noselect
 filetype plugin indent on
 " let g:deoplete#enable_at_startup = 1
