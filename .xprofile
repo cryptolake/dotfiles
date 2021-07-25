@@ -1,6 +1,0 @@
-#!/bin/bash
-picom --config "$HOME/.config/picom.conf" &
-locker &
-remaps &
-unclutter &
-mpd &
