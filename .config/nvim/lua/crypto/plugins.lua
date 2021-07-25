@@ -1,5 +1,5 @@
 return require('packer').startup(function()
-	use 'wbthomason/packer.nvim'
+	use {'wbthomason/packer.nvim'}
 	use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 	use {"tpope/vim-surround"}
 	use {'nvim-lua/popup.nvim'}

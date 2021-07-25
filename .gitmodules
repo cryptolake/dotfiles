@@ -1,0 +1,6 @@
+[submodule ".config/awesome/awesome-freedesktop"]
+	path = .config/awesome/awesome-freedesktop
+	url = https://github.com/lcpz/awesome-freedesktop
+[submodule ".config/awesome/freedesktop"]
+	path = .config/awesome/freedesktop
+	url = https://github.com/lcpz/awesome-freedesktop
