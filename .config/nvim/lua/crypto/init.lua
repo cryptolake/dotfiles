@@ -5,5 +5,5 @@
  require('crypto.treesitter')
  require('crypto.telescope')
  require('crypto.lualine')
- require('crypto.gitsigns')
+ require('crypto.git')
 

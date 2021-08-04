@@ -1,11 +1,14 @@
-
+" nvim tree
 nnoremap <leader>n  :NvimTreeToggle<CR>
 " Shortcutting split navigation, saving a keypress:
-	nmap <leader>w <C-w>
+nmap <leader>w <C-w>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	nmap <leader>o :setlocal spell! spelllang=en_us<CR>
+nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 
+" Goyo
+nmap <leader>g :Goyo<CR>
+ 
 " Telescope
 " Find files using Telescope command-line sugar.
 
@@ -29,3 +32,15 @@ nnoremap <silent><leader>b[ :BufferLineMovePrev<CR>
 nnoremap <silent><leader>be :BufferLineSortByExtension<CR>
 nnoremap <silent><leader>bd :BufferLineSortByDirectory<CR>
 nnoremap <silent><leader>bc :bd<CR>
+
+" make Y behave like C and D
+nnoremap <silent><leader>Y y$
+
+"keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
