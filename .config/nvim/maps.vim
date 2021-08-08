@@ -11,7 +11,6 @@ nmap <leader>g :Goyo<CR>
  
 " Telescope
 " Find files using Telescope command-line sugar.
-
 nnoremap <leader>ff <cmd>Telescope find_files <cr>
 nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
 nnoremap <leader>fb <cmd>Telescope buffers    <cr>
@@ -44,3 +43,6 @@ nnoremap J mzJ`z
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Lsp
+nnoremap <leader>lq :LspStop<CR>

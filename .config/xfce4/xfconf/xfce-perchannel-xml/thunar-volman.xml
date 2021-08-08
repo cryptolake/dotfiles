@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="thunar-volman" version="1.0">
+  <property name="autokeyboard" type="empty">
+    <property name="enabled" type="bool" value="true"/>
+    <property name="command" type="string" value="/home/crypto/.local/bin/remaps"/>
+  </property>
+</channel>
