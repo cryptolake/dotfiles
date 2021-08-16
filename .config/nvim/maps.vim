@@ -46,3 +46,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Lsp
 nnoremap <leader>lq :LspStop<CR>
+
+
+" Expand
+imap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'
+smap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'

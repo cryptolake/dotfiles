@@ -119,14 +119,9 @@
     <property name="plugin-2" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-5" type="string" value="tasklist">
-      <property name="show-handle" type="bool" value="true"/>
-      <property name="flat-buttons" type="bool" value="true"/>
-      <property name="show-labels" type="bool" value="true"/>
-    </property>
     <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance10265;chromium.instance1118;chromium.instance1132;chromium.instance1173;chromium.instance1179;chromium.instance11875;chromium.instance1241;chromium.instance12591;chromium.instance1283;chromium.instance1338;chromium.instance1419;chromium.instance1421;chromium.instance1453;chromium.instance17599;chromium.instance2272;chromium.instance27745;chromium.instance3792;chromium.instance38132;chromium.instance4585;chromium.instance52049;chromium.instance7352;chromium.instance86727;firefox.instance11194;firefox.instance1181;firefox.instance1381;firefox.instance17608;firefox.instance1870;firefox.instance19064;firefox.instance1932;firefox.instance2166;firefox.instance2763;firefox.instance30001;firefox.instance32351;firefox.instance38275;firefox.instance47373;firefox.instance53854;firefox.instance57369;firefox.instance61962;firefox.instance70817;firefox.instance7918;kdeconnect.mpris_00b575bd17544b5fb56ef98711e74448;kdeconnect.mpris_1207252cd3ce412fa16ae885234b1942;kdeconnect.mpris_1956856e932e4d2b9822dfeb3bab22a2;kdeconnect.mpris_341609eea5b24f3190d21ac09e993b0e;kdeconnect.mpris_6bb67739f9c2484d9231ff31c1b782f7;kdeconnect.mpris_8fd0f18ddcce456b8ace0d6e892e1953;kdeconnect.mpris_dd1999b830fc442cb054ba6218e2afff;kdeconnect.mpris_e950332488914a608a3050801f47ebc3"/>
+      <property name="mpris-players" type="string" value="chromium.instance10265;chromium.instance1118;chromium.instance1132;chromium.instance1173;chromium.instance1179;chromium.instance11875;chromium.instance1241;chromium.instance12591;chromium.instance1283;chromium.instance1338;chromium.instance1419;chromium.instance1421;chromium.instance1453;chromium.instance17599;chromium.instance2272;chromium.instance27745;chromium.instance3792;chromium.instance38132;chromium.instance4585;chromium.instance52049;chromium.instance7352;chromium.instance86727;firefox.instance11194;firefox.instance1181;firefox.instance1323;firefox.instance1381;firefox.instance17608;firefox.instance1765;firefox.instance1812;firefox.instance1870;firefox.instance19064;firefox.instance1932;firefox.instance2166;firefox.instance2763;firefox.instance30001;firefox.instance32351;firefox.instance38275;firefox.instance47373;firefox.instance53854;firefox.instance57369;firefox.instance61962;firefox.instance70817;firefox.instance7918;kdeconnect.mpris_00b575bd17544b5fb56ef98711e74448;kdeconnect.mpris_1207252cd3ce412fa16ae885234b1942;kdeconnect.mpris_1956856e932e4d2b9822dfeb3bab22a2;kdeconnect.mpris_341609eea5b24f3190d21ac09e993b0e;kdeconnect.mpris_6bb67739f9c2484d9231ff31c1b782f7;kdeconnect.mpris_8fd0f18ddcce456b8ace0d6e892e1953;kdeconnect.mpris_dd1999b830fc442cb054ba6218e2afff;kdeconnect.mpris_e950332488914a608a3050801f47ebc3"/>
     </property>
     <property name="plugin-18" type="string" value="separator">
       <property name="expand" type="bool" value="true"/>
@@ -181,5 +176,6 @@
     <property name="plugin-26" type="string" value="directorymenu">
       <property name="base-directory" type="string" value="/home/crypto"/>
     </property>
+    <property name="plugin-5" type="string" value="tasklist"/>
   </property>
 </channel>

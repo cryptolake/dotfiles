@@ -12,9 +12,12 @@ return require('packer').startup(function()
 	use {'lewis6991/gitsigns.nvim'}
 	use {'kyazdani42/nvim-tree.lua'}
 	use {'windwp/nvim-autopairs'}
-	use {'neovim/nvim-lspconfig'}
+	-- lsp stuff
+	use {
+		'neovim/nvim-lspconfig',
+		'williamboman/nvim-lsp-installer',
+	}
 	-- use {'cryptolake/nvim-lspconfig'}
-	use {'kabouzeid/nvim-lspinstall'}
 	use {'nvim-lua/plenary.nvim'}
 	use {'hrsh7th/nvim-compe'}
 	use {'junegunn/goyo.vim'}

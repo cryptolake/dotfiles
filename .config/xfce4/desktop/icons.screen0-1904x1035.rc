@@ -1,8 +1,12 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
-[/home/crypto/Desktop/noita.exe]
+[/home/crypto/Desktop/firefox.desktop]
 row=3
+col=0
+
+[/home/crypto/Desktop/org.kde.dolphin.desktop]
+row=4
 col=0
 
 [Trash]
