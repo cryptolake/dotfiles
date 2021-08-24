@@ -23,9 +23,8 @@ set nohlsearch
 set undofile
 set undodir=~/.local/share/nvim/undo
 set completeopt=menuone,noselect
+
 filetype plugin indent on
-" let g:deoplete#enable_at_startup = 1
-	" nnoremap c "_c
 set nocompatible
 syntax on
 set encoding=utf-8
@@ -42,7 +41,8 @@ set splitbelow splitright
 " Commentary 
 autocmd FileType pascal setlocal commentstring={%s} 
 
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 
 " Save file as sudo on files that require root permission
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+command W execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+" cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!

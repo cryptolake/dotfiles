@@ -1,6 +1,8 @@
-local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.pasls.setup{}
+-- lsp install
+local lsp_installer = require'nvim-lsp-installer'
 
 local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -31,27 +33,17 @@ local function on_attach(client, bufnr)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+        buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
-end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-
-local lsp_installer = require'nvim-lsp-installer'
-
-function common_on_attach(client, bufnr)
-    -- setup buffer keymaps etc.
 end
 
 local installed_servers = lsp_installer.get_installed_servers()
 
 for _, server in pairs(installed_servers) do
-    opts = {
-        on_attach = common_on_attach,
+    local opts = {
+        on_attach = on_attach,
     }
 
     -- (optional) Customize the options passed to the server

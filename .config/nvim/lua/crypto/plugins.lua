@@ -1,6 +1,7 @@
 return require('packer').startup(function()
 	use {'wbthomason/packer.nvim'}
 	use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+	use {"tpope/vim-surround"}
 	use {'nvim-treesitter/nvim-treesitter' , run = ':TSUpdate'}
 	use {'nvim-lua/popup.nvim'}
 	use {'nvim-telescope/telescope.nvim'}
