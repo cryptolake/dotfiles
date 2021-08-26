@@ -118,8 +118,8 @@ alias \
 	e="$EDITOR" \
 	v="$EDITOR" \
 	p="sudo pacman" \
-	z="zathura"
-
+	z="zathura" \
+	icat="kitty +kitten icat"
 alias \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \

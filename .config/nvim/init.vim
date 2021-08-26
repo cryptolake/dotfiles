@@ -28,7 +28,7 @@ filetype plugin indent on
 set nocompatible
 syntax on
 set encoding=utf-8
-set number relativenumber
+set number 
 " Enable autocompletion:
 set wildmode=longest,list,full
 " Disables automatic commenting on newline:

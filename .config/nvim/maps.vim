@@ -7,14 +7,28 @@ nmap <leader>w <C-w>
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Goyo
-nmap <leader>g :Goyo<CR>
+" nmap <leader>g :Goyo<CR>
  
 " Telescope
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files <cr>
-nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
-nnoremap <leader>fb <cmd>Telescope buffers    <cr>
-nnoremap <leader>fh <cmd>Telescope help_tags  <cr>
+nnoremap <leader><space> <cmd>Telescope buffers <cr>
+nnoremap <leader>sf <cmd>Telescope find_files  <cr>
+" nnoremap <leader>sb <cmd>Telescope current_buffer_fuzzy_find    <cr>
+nnoremap <leader>sh <cmd>Telescope help_tags  <cr>
+nnoremap <leader>st <cmd>Telescope tags  <cr>
+nnoremap <leader>sd <cmd>Telescope grep_string  <cr>
+nnoremap <leader>sg <cmd>Telescope live_grep  <cr>
+nnoremap <leader>sr <cmd>Telescope oldfiles  <cr>
+
+nnoremap <leader>ss <cmd>Telescope lsp_document_symbols <cr>
+nnoremap <leader>sw <cmd>Telescope lsp_workspace_symbols <cr>
+
+
+nnoremap <leader>gb <cmd>Telescope git_branches <cr>
+nnoremap <leader>gf <cmd>Telescope git_files <cr>
+nnoremap <leader>gt <cmd>Telescope git_stash <cr>
+nnoremap <leader>gs <cmd>Telescope git_status <cr>
+nnoremap <leader>gc <cmd>Telescope git_commits <cr>
 
 " bufferline magical stuff
 
@@ -32,8 +46,6 @@ nnoremap <silent><leader>be :BufferLineSortByExtension<CR>
 nnoremap <silent><leader>bd :BufferLineSortByDirectory<CR>
 nnoremap <silent><leader>bc :bd<CR>
 
-" make Y behave like C and D
-nnoremap <silent><leader>Y y$
 
 "keeping it centered
 nnoremap n nzzzv
@@ -48,6 +60,3 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>lq :LspStop<CR>
 
 
-" Expand
-imap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'
-smap <expr> <Tab>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<Tab>'

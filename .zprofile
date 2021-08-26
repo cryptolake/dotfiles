@@ -9,7 +9,10 @@
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin:$GOPATH/bin"
 
 # Default programs:
+export TERM="kitty"
+export TERMINAL="kitty"
 export EDITOR="nvim"
+export BROWSER="brave --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -49,11 +52,11 @@ export MOZ_DISABLE_RDD_SANDBOX=1
 export FPCDIR="/usr/lib/fpc/src"
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 
-# if [ -z "$SSH_AUTH_SOCK" ] ; then
-#   eval `ssh-agent -s`
-#   ssh-add
-# fi
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
 
-# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-# 	exec sway
-# fi
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+	exec sway
+fi
