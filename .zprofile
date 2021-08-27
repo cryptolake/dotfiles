@@ -12,13 +12,14 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.lo
 export TERM="kitty"
 export TERMINAL="kitty"
 export EDITOR="nvim"
-export BROWSER="brave --enable-features=UseOzonePlatform --ozone-platform=wayland"
+export BROWSER="brave"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_SESSION_TYPE=wayland
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
@@ -51,6 +52,12 @@ export MOZ_X11_EGL=1
 export MOZ_DISABLE_RDD_SANDBOX=1
 export FPCDIR="/usr/lib/fpc/src"
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+# wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export SDL_VIDEODRIVER=wayland
+export ECORE_EVAS_ENGINE=wayland_egl
+export ELM_ENGINE=wayland_egl
+export BEMENU_BACKEND=wayland
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`

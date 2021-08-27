@@ -1,5 +1,5 @@
 {
-    "layer": "top",
+    "layer": "bottom",
     "height": 25,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
@@ -8,19 +8,7 @@
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "1 ",
-            "2": "2 ",
-            "3": "3 ",
-            "4": "4 ",
-            "5": "5 ",
-            "6": "6 ",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10"
-        }
+        "format": "{value}"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -37,6 +25,7 @@
         "spacing": 0
     },
     "clock": {
+    	"format": "{:%a %d %H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
