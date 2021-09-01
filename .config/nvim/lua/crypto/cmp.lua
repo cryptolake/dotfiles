@@ -1,12 +1,15 @@
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
 -- luasnip setup
 local luasnip = require 'luasnip'
-
+require("luasnip/loaders/from_vscode").lazy_load()
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			require('luasnip').lsp_expand(args.body)
+			require'luasnip'.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
@@ -42,7 +45,14 @@ cmp.setup {
 	sources = {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
-		{ name = 'path' },
-		{ name = 'buffer' },
+		{ name = 'path' }
 	},
 }
+
+require('nvim-autopairs').setup{}
+-- you need setup cmp first put this after cmp.setup()
+require("nvim-autopairs.completion.cmp").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` after select function or method item
+  auto_select = true -- automatically select the first item
+})

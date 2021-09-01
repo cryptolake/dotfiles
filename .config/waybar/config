@@ -1,9 +1,10 @@
+// vim:ft=json
 {
     "layer": "bottom",
     "height": 25,
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "backlight", "battery", "clock","tray"],
+    "modules-left": ["river/tags"],
+    "modules-center": ["mpd"],
+    "modules-right": ["idle_inhibitor", "mpd","pulseaudio", "network", "backlight", "battery", "clock","tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -58,6 +59,7 @@
        	"format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "disable-scroll": true,

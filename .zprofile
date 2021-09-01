@@ -20,6 +20,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_MUSIC_DIR="$HOME/Music"
 export XDG_SESSION_TYPE=wayland
+
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
@@ -35,6 +36,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 
 # Other program settings:
+export SUDO_ASKPASS=bmenupass
 export DICS="/usr/share/stardict/dic/"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS=-R
@@ -57,6 +59,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export SDL_VIDEODRIVER=wayland
 export ECORE_EVAS_ENGINE=wayland_egl
 export ELM_ENGINE=wayland_egl
+export XKB_DEFAULT_OPTIONS=caps:escape
 export BEMENU_BACKEND=wayland
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -65,5 +68,5 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
 fi
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-	exec sway
+	exec river
 fi

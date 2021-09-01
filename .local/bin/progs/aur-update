@@ -1,5 +1,0 @@
-updpkgsums
-makepkg --printsrcinfo > .SRCINFO
-
-git add .SRCINFO PKGBUILD 
-git status

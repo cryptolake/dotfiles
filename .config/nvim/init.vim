@@ -17,18 +17,16 @@ set go=a
 set termguicolors
 set clipboard+=unnamedplus
 set background=dark
-set hlsearch
 set mouse=a
 set nohlsearch
 set undofile
 set undodir=~/.local/share/nvim/undo
-set completeopt=menuone,noselect
 
 filetype plugin indent on
 set nocompatible
 syntax on
 set encoding=utf-8
-set number 
+set relativenumber
 " Enable autocompletion:
 set wildmode=longest,list,full
 " Disables automatic commenting on newline:
