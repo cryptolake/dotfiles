@@ -12,7 +12,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.lo
 export TERM="kitty"
 export TERMINAL="kitty"
 export EDITOR="nvim"
-export BROWSER="brave"
+export BROWSER="qutebrowser"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"

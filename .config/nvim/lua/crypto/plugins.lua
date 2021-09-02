@@ -5,6 +5,10 @@ require('packer').startup(function()
 	use "tpope/vim-surround" -- surround text the vim way
 	use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
 
+	-- theme
+	use  'RRethy/nvim-base16'
+
+	use 'lewis6991/impatient.nvim'
 	-- UI to select things (files, grep results, open buffers...)
 	use { 'nvim-telescope/telescope.nvim', requires = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  } }
 
@@ -42,8 +46,6 @@ require('packer').startup(function()
 		'rafamadriz/friendly-snippets'
 		}
 
-	-- Gruvbox theme
-	use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
 	-- visual stuff
 	use {'hoob3rt/lualine.nvim',

@@ -11,6 +11,7 @@
 # Use the "logo" key as the primary modifier
 mod="Mod4"
 term="kitty"
+browser="qutebrowser"
 
 # Mod+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal $mod Return spawn $term
@@ -30,7 +31,8 @@ riverctl map normal $mod D spawn "bemenu-run"
 
 riverctl map normal $mod+Shift A spawn "$term pulsemixer" 
 
-riverctl map normal $mod W spawn "brave"
+riverctl map normal $mod W spawn "$browser"
+riverctl map normal $mod+Shift W spawn "$term iwctl"
 
 riverctl map normal $mod R spawn "$term ranger" 
 riverctl map normal $mod+Shift R spawn "thunar" 
@@ -38,6 +40,10 @@ riverctl map normal $mod+Shift R spawn "thunar"
 riverctl map normal $mod Y spawn "$term calcurse"
 riverctl map normal $mod I spawn "$term htop"
 riverctl map normal $mod e spawn "$term mutt"
+
+riverctl map normal $mod m spawn "$term ncmpcpp"
+riverctl map normal $mod C spawn "$term weechat" 
+riverctl map normal $mod N spawn "$term newsboat" 
 
 riverctl map normal None Print spawn "grimshot copy screen"
 riverctl map normal $mod Print spawn "grimpick"
@@ -176,7 +182,7 @@ riverctl set-repeat 50 300
 
 # auto starting apps
 riverctl spawn waybar
-riverctl spawn "swaybg -i ~/Pictures/wallhaven-575or9.jpg" 
+riverctl spawn "swaybg -i ~/Pictures/wallhaven-l3zmwy.jpg"
 # riverctl spawn 
 # Set app-ids of views which should float
 riverctl float-filter-add "float"
@@ -185,7 +191,7 @@ riverctl float-filter-add "popup"
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 exec mako &
-exec waybar &
+exec pkill waybar & waybar &
 exec mpd &
 riverctl default-layout rivertile
 exec rivertile

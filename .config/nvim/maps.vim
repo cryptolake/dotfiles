@@ -47,7 +47,6 @@ nnoremap <silent><leader>bd :bd<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
-
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv

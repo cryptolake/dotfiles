@@ -5,9 +5,6 @@ if ! isdirectory(system('echo -n "${XDG_DATA_HOME:-$HOME/local/share}/nvim/site/
 	autocmd VimEnter * PackerInstall
 endif	
 
-lua require('crypto')
-runtime ./maps.vim 
-colorscheme gruvbox
 
 set incsearch	
 set hlsearch	
@@ -27,6 +24,7 @@ set nocompatible
 syntax on
 set encoding=utf-8
 set relativenumber
+set number
 " Enable autocompletion:
 set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -39,8 +37,11 @@ set splitbelow splitright
 " Commentary 
 autocmd FileType pascal setlocal commentstring={%s} 
 
-" hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 
 " Save file as sudo on files that require root permission
 command W execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+lua require('crypto')
+runtime ./maps.vim 
+colorscheme base16-tomorrow-night
