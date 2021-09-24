@@ -6,7 +6,10 @@
 
 	"modules-left": [
 		"river/tags",
-		"custom/right-arrow-dark"
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"mpd",
+		"custom/right-arrow-dark",
 	],
 	"modules-center": [
 		"custom/left-arrow-dark",
@@ -22,6 +25,9 @@
 	"modules-right": [
 		"custom/left-arrow-dark",
 		"pulseaudio",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"network",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"battery",
@@ -61,7 +67,7 @@
 		"tooltip": false
 	},
 	"clock#3": {
-		"format": "{:%m-%d}",
+		"format": "{:%d-%m-%y}",
 		"tooltip": false
 	},
 
@@ -96,7 +102,40 @@
 			""
 		]
 	},
+	"network": {
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+		"format-linked": "{ifname} (No IP) ",
+		"format-disconnected": "Disconnected ⚠",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
 	"tray": {
 		"icon-size": 20
+	},
+	"mpd": {
+		"format": "{stateIcon} {artist} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+		"format-disconnected": "Disconnected ",
+		"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+		"interval": 2,
+		"consume-icons": {
+			"on": " "
+		},
+		"random-icons": {
+			"off": " ",
+			"on": " "
+		},
+		"repeat-icons": {
+			"on": " "
+		},
+		"single-icons": {
+			"on": "1 "
+		},
+		"state-icons": {
+			"paused": "",
+			"playing": ""
+		},
+		"tooltip-format": "MPD (connected)",
+		"tooltip-format-disconnected": "MPD (disconnected)"
 	}
 }
+

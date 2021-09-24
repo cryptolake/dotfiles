@@ -7,26 +7,26 @@ endif
 
 
 set incsearch	
+set exrc
 set hlsearch	
 set bs=2	
-set nobackup	
+set hidden
 set go=a
-set termguicolors
 set clipboard+=unnamedplus
-set background=dark
 set mouse=a
 set nohlsearch
+set noswapfile
+set nobackup
 set undofile
 set undodir=~/.local/share/nvim/undo
-
+set dictionary+=/usr/share/dict/words
 filetype plugin indent on
 set nocompatible
 syntax on
 set encoding=utf-8
 set relativenumber
 set number
-" Enable autocompletion:
-set wildmode=longest,list,full
+set scrolloff=8
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -37,11 +37,13 @@ set splitbelow splitright
 " Commentary 
 autocmd FileType pascal setlocal commentstring={%s} 
 
-hi Normal guibg=NONE ctermbg=NONE
 
 " Save file as sudo on files that require root permission
 command W execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 lua require('crypto')
 runtime ./maps.vim 
-colorscheme base16-tomorrow-night
+colorscheme gruvbox
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+set termguicolors

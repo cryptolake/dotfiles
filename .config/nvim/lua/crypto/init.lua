@@ -4,8 +4,4 @@ require('crypto.lsp')
 require('crypto.cmp')
 require('crypto.git')
 require('crypto.telescope')
-require('lualine').setup {
-	options = {
-		theme = 'auto'
-	}
-}
+require('crypto.lines')

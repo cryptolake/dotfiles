@@ -123,5 +123,6 @@ alias \
 alias \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
+	holb="sshpass -p "2c1e32e45924ea66462e" ssh a0cf8f7c1849@64645d80.hbtn-cod.io" \
 	mux="tmuxcator" \
 

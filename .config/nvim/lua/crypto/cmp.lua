@@ -4,6 +4,11 @@ vim.o.completeopt = 'menuone,noselect'
 -- luasnip setup
 local luasnip = require 'luasnip'
 require("luasnip/loaders/from_vscode").lazy_load()
+
+-- nvim-cmp supports additional completion capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
@@ -45,7 +50,8 @@ cmp.setup {
 	sources = {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
-		{ name = 'path' }
+		{ name = 'path' },
+		{ name = 'buffer' }
 	},
 }
 

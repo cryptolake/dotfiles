@@ -10,9 +10,10 @@
 
 # Use the "logo" key as the primary modifier
 mod="Mod4"
-term="kitty"
-browser="qutebrowser"
+term="$TERMINAL"
+browser="$BROWSER"
 
+riverctl spawn waybar
 # Mod+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal $mod Return spawn $term
 
@@ -39,7 +40,7 @@ riverctl map normal $mod+Shift R spawn "thunar"
 
 riverctl map normal $mod Y spawn "$term calcurse"
 riverctl map normal $mod I spawn "$term htop"
-riverctl map normal $mod e spawn "$term mutt"
+riverctl map normal $mod E spawn "$term mutt"
 
 riverctl map normal $mod m spawn "$term ncmpcpp"
 riverctl map normal $mod C spawn "$term weechat" 
@@ -47,6 +48,8 @@ riverctl map normal $mod N spawn "$term newsboat"
 
 riverctl map normal None Print spawn "grimshot copy screen"
 riverctl map normal $mod Print spawn "grimpick"
+
+riverctl map normal $mod grave spawn "emojisel"
 
 
 
@@ -124,14 +127,20 @@ do
     riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
 done
 
+#Mod+tab toggle between tags
+riverctl map normal $mod Tab focus-previous-tags
+
 # Mod+0 to focus all tags
 # Mod+Shift+0 to tag focused view with all tags
 all_tags=$(((1 << 32) - 1))
 riverctl map normal $mod 0 set-focused-tags $all_tags
 riverctl map normal $mod+Shift 0 set-view-tags $all_tags
 
-# Mod+Space to toggle float
+# Mod+Shift+Space to toggle float
 riverctl map normal $mod+Shift Space toggle-float
+
+# make the client master
+riverctl map normal $mod Space zoom
 
 # Mod+F to toggle fullscreen
 riverctl map normal $mod F toggle-fullscreen
@@ -166,6 +175,7 @@ do
     riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
+    riverctl map normal $mod p spawn 'mpc toggle'
 
     # Control screen backlight brighness with light (https://github.com/haikarainen/light)
     riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
@@ -181,8 +191,10 @@ riverctl border-color-unfocused 0x282a36
 riverctl set-repeat 50 300
 
 # auto starting apps
-riverctl spawn waybar
-riverctl spawn "swaybg -i ~/Pictures/wallhaven-l3zmwy.jpg"
+riverctl spawn "swaybg -i ~/Pictures/wallhaven-575or9.jpg"
+riverctl spawn mako 
+riverctl spawn mpd 
+riverctl spawn chkbat
 # riverctl spawn 
 # Set app-ids of views which should float
 riverctl float-filter-add "float"
@@ -190,8 +202,5 @@ riverctl float-filter-add "popup"
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
-exec mako &
-exec pkill waybar & waybar &
-exec mpd &
 riverctl default-layout rivertile
-exec rivertile
+exec rivertile &
