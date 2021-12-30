@@ -9,12 +9,13 @@
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin:$GOPATH/bin"
 
 # Default programs:
-export TERM="kitty"
+# export TERM="kitty"
 export TERMINAL="kitty"
 export EDITOR="nvim"
 export BROWSER="firefox"
 
 # ~/ Clean-up:
+export LIBSEAT_BACKEND=logind
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -68,6 +69,6 @@ export XDG_CURRENT_DESKTOP=Unity
 #   ssh-add
 # fi
 
-# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-# 	exec river
-# fi
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+ 	exec dbus-run-session river
+fi

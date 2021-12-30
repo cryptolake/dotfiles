@@ -1,9 +1,3 @@
-[submodule ".config/awesome/awesome-freedesktop"]
-	path = .config/awesome/awesome-freedesktop
-	url = https://github.com/lcpz/awesome-freedesktop
-[submodule ".config/awesome/freedesktop"]
-	path = .config/awesome/freedesktop
-	url = https://github.com/lcpz/awesome-freedesktop
 [submodule "/home/crypto/.config/kitty/kitty-themes"]
-	path = /home/crypto/.config/kitty/kitty-themes
+	path = /home/crypt/.config/kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes
