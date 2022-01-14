@@ -191,7 +191,12 @@ riverctl border-color-unfocused 0x282a36
 riverctl set-repeat 50 300
 
 # auto starting apps
+riverctl spawn "wlr-randr --output HDMI-A-1 --preferred"
+
 riverctl spawn "swaybg -i ~/Pictures/wall.jpg"
+
+riverctl spawn "lockmanage"
+
 riverctl spawn mako 
 riverctl spawn mpd 
 # riverctl spawn 

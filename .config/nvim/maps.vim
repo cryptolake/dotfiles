@@ -1,5 +1,8 @@
-" nvim tree
-nnoremap <leader>n  :Vex<CR>
+" nvim tree toggle
+nmap <leader>n <cmd>NvimTreeToggle<cr>
+
+" Undo tree toggle
+nmap <leader>u <cmd>UndotreeToggle<cr>
 
 " Shortcutting split navigation, saving a keypress:
 nmap <leader>w <C-w>
@@ -17,7 +20,7 @@ nnoremap <leader>ft <cmd>Telescope tags  <cr>
 nnoremap <leader>fd <cmd>Telescope grep_string  <cr>
 nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles  <cr>
-nnoremap <leader>fr <cmd>Telescope file_browser  <cr>
+nnoremap <leader>fr <cmd>lua require 'telescope'.extensions.file_browser.file_browser()  <cr>
 
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols <cr>
 nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
@@ -48,4 +51,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " Lsp
 nnoremap <leader>lq :LspRestart<CR>
 
+" Terminal mode
+tnoremap <Esc> <C-\><C-n>
 
