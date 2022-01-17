@@ -24,7 +24,6 @@ set number
 set relativenumber
 set background=dark
 set termguicolors
-hi Normal guibg=NONE ctermbg=NONE
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

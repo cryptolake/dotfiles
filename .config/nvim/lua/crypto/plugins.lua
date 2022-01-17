@@ -58,14 +58,12 @@ require('packer').startup(function()
 	use {
 		'L3MON4D3/LuaSnip',
 		'rafamadriz/friendly-snippets',
-		config = require("luasnip.loaders.from_vscode").lazy_load()
 	}
 
 	-- visual stuff
 
 	use {
 		'akinsho/bufferline.nvim',
-		config = require("bufferline").setup()
 	}
 
 	use "tversteeg/registers.nvim"
@@ -73,7 +71,6 @@ require('packer').startup(function()
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = {'kyazdani42/nvim-web-devicons', opt = true},
-		config = require'lualine'.setup()
 	}
 
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -85,8 +82,8 @@ require('packer').startup(function()
 		requires = {
 			'kyazdani42/nvim-web-devicons', -- optional, for file icon
 		},
-		config = function() require'nvim-tree'.setup {} end
 	}
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
