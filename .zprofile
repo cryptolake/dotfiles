@@ -12,7 +12,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.lo
 # export TERM="kitty"
 export TERMINAL="kitty"
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave"
 
 # ~/ Clean-up:
 export LIBSEAT_BACKEND=logind
