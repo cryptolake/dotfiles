@@ -43,6 +43,8 @@ require('packer').startup(function()
 			'saadparwaiz1/cmp_luasnip',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-buffer',
+
 		}
 	}
 
@@ -59,6 +61,7 @@ require('packer').startup(function()
 
 	use {
 		'akinsho/bufferline.nvim',
+		config = function() require'bufferline'.setup {} end
 	}
 
 	use "tversteeg/registers.nvim"
@@ -77,6 +80,7 @@ require('packer').startup(function()
 		requires = {
 			'kyazdani42/nvim-web-devicons', -- optional, for file icon
 		},
+		config = function() require'nvim-tree'.setup {} end
 	}
 
 	if packer_bootstrap then
