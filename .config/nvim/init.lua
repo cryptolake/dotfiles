@@ -21,7 +21,6 @@ require('packer').startup(function(use)
 
 	use "mbbill/undotree" -- undo tree
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-	use 'ludovicchabant/vim-gutentags' -- Automatic tags management
 	-- UI to select things (files, grep results, open buffers...)
 	use { 'nvim-telescope/telescope.nvim',
 		requires = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  }
@@ -91,10 +90,17 @@ require('packer').startup(function(use)
 		config = function() require'nvim-tree'.setup {} end
 	}
 
+  -- null-ls
+    use 'jose-elias-alvarez/null-ls.nvim'
 	if packer_bootstrap then
 		require('packer').sync()
 	end
 end)
+
+-- Fix tabs
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 --Set highlight on search
 vim.o.hlsearch = true
@@ -109,13 +115,18 @@ vim.wo.relativenumber = true
 --Enable mouse mode
 vim.o.mouse = 'a'
 
+-- vim.opt.laststatus = 3
 --Enable break indent
 vim.o.breakindent = true
 
 --Save undo history
 vim.opt.undofile = true
-vim.opt.undodir = '~/.local/share/nvim/undo'
+vim.opt.undodir = os.getenv("HOME") .. '/.local/share/nvim/undo'
 
+-- auto change dir
+vim.opt.autochdir = true
+
+vim.opt.clipboard = 'unnamedplus'
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -131,6 +142,10 @@ vim.cmd [[colorscheme gruvbox]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+--Remap space as leader key
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 -- very useful mappings
 vim.cmd [[
 
@@ -170,6 +185,7 @@ tnoremap <Esc> <C-\><C-n>
 
 --Set statusbar
 require('lualine').setup {}
+vim.opt.laststatus = 3
 
 --Enable Comment.nvim
 require('Comment').setup()
@@ -178,10 +194,6 @@ local ft = require('Comment.ft');
 
 ft.set('c', '/*%s*/');
 
---Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -197,28 +209,10 @@ vim.cmd [[
 ]]
 
 -- Gitsigns
-require('gitsigns').setup {
-	signs = {
-		add = { text = '+' },
-		change = { text = '~' },
-		delete = { text = '_' },
-		topdelete = { text = '‾' },
-		changedelete = { text = '~' },
-	},
-}
+require('gitsigns').setup {}
 
 -- Telescope
-require('telescope').setup {
-	defaults = {
-		mappings = {
-			i = {
-				['<C-u>'] = false,
-				['<C-d>'] = false,
-			},
-		},
-	},
-}
-
+require('telescope').setup {}
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
 
@@ -250,56 +244,22 @@ nnoremap <leader>gc <cmd>Telescope git_commits <cr>
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
+	ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	highlight = {
 		enable = true, -- false will disable the whole extension
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = 'gnn',
-			node_incremental = 'grn',
-			scope_incremental = 'grc',
-			node_decremental = 'grm',
-		},
+		disable = {"html"},
 	},
 	indent = {
 		enable = true,
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				['af'] = '@function.outer',
-				['if'] = '@function.inner',
-				['ac'] = '@class.outer',
-				['ic'] = '@class.inner',
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				[']m'] = '@function.outer',
-				[']]'] = '@class.outer',
-			},
-			goto_next_end = {
-				[']M'] = '@function.outer',
-				[']['] = '@class.outer',
-			},
-			goto_previous_start = {
-				['[m'] = '@function.outer',
-				['[['] = '@class.outer',
-			},
-			goto_previous_end = {
-				['[M'] = '@function.outer',
-				['[]'] = '@class.outer',
-			},
-		},
+		disable = {"python"}
 	},
 }
 
+-- Diagnostic keymaps
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
 -- LSP settings
 -- lsp install
@@ -327,10 +287,6 @@ local function on_attach(client, bufnr)
 	buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 	buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-	buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-	buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-	buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
@@ -366,6 +322,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- luasnip setup
 -- Setup nvim-cmp.
 local luasnip = require 'luasnip'
+require("luasnip.loaders.from_vscode").lazy_load()
 require('nvim-autopairs').setup{}
 local cmp = require 'cmp'
 cmp.setup {
@@ -410,5 +367,16 @@ cmp.setup {
     { name = 'luasnip' }
   },
 }
+
+-- null-ls is an attempt to bridge that gap and simplify the process of creating, 
+-- sharing, and setting up LSP sources using pure Lua.
+--
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.flake8,
+        require("null-ls").builtins.diagnostics.pydocstyle,
+    },
+})
+
 
 -- vim: ts=2 sts=2 sw=2 et
