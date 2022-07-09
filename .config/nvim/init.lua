@@ -43,6 +43,8 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		'williamboman/nvim-lsp-installer',
 	}
+  -- debugging
+  use 'mfussenegger/nvim-dap'
 	-- Autocompletion
 	use {
 		'hrsh7th/nvim-cmp',
@@ -67,10 +69,6 @@ require('packer').startup(function(use)
 
 	-- visual stuff
 
-	use {
-		'akinsho/bufferline.nvim',
-		config = function() require'bufferline'.setup {} end
-	}
 
 	use "tversteeg/registers.nvim"
 
@@ -89,7 +87,8 @@ require('packer').startup(function(use)
 		},
 		config = function() require'nvim-tree'.setup {} end
 	}
-
+  -- docker
+  -- use "jamestthompson3/nvim-remote-containers"
   -- null-ls
     use 'jose-elias-alvarez/null-ls.nvim'
 	if packer_bootstrap then
@@ -110,7 +109,6 @@ vim.o.hlsearch = false
 
 --Make line numbers default
 vim.wo.number = true
-vim.wo.relativenumber = true
 
 --Enable mouse mode
 vim.o.mouse = 'a'
@@ -124,7 +122,7 @@ vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. '/.local/share/nvim/undo'
 
 -- auto change dir
-vim.opt.autochdir = true
+-- vim.opt.autochdir = true
 
 vim.opt.clipboard = 'unnamedplus'
 --Case insensitive searching UNLESS /C or capital in search
@@ -137,7 +135,10 @@ vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd [[
+colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
+]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -161,15 +162,13 @@ nmap <leader>w <C-w>
 " Spell-check set to <leader>o, 'o' for 'orthography':
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 
-" bufferline magical stuff
 
 " These commands will navigate through buffers in order regardless of which mode you are using
 " e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-nnoremap <leader>] :BufferLineCycleNext<CR>
-nnoremap <leader>[ :BufferLineCyclePrev<CR>
-nnoremap <leader><leader> <C-^>
+nnoremap <leader>] :bn<CR>
+nnoremap <leader>[ :bp<CR>
 
-nnoremap <silent><leader>bd :bd<CR>
+nnoremap <silent><leader>d :bd<CR>
 
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
@@ -194,12 +193,6 @@ local ft = require('Comment.ft');
 
 ft.set('c', '/*%s*/');
 
-
---Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
-
 -- Highlight on yank
 vim.cmd [[
   augroup YankHighlight
@@ -208,9 +201,52 @@ vim.cmd [[
   augroup end
 ]]
 
--- Gitsigns
-require('gitsigns').setup {}
+-- No line number with terminal
+vim.cmd [[
+  autocmd TermOpen * setlocal nonumber norelativenumber
+]]
 
+-- Gitsigns
+require('gitsigns').setup{
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    map('n', ']c', function()
+      if vim.wo.diff then return ']c' end
+      vim.schedule(function() gs.next_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    map('n', '[c', function()
+      if vim.wo.diff then return '[c' end
+      vim.schedule(function() gs.prev_hunk() end)
+      return '<Ignore>'
+    end, {expr=true})
+
+    -- Actions
+    map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+    map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+    map('n', '<leader>hS', gs.stage_buffer)
+    map('n', '<leader>hu', gs.undo_stage_hunk)
+    map('n', '<leader>hR', gs.reset_buffer)
+    map('n', '<leader>hp', gs.preview_hunk)
+    map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+    map('n', '<leader>tb', gs.toggle_current_line_blame)
+    map('n', '<leader>hd', gs.diffthis)
+    map('n', '<leader>hD', function() gs.diffthis('~') end)
+    map('n', '<leader>td', gs.toggle_deleted)
+
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
+}
 -- Telescope
 require('telescope').setup {}
 -- Enable telescope fzf native
@@ -221,7 +257,7 @@ require('telescope').load_extension 'fzf'
 vim.cmd [[
 
 nnoremap <leader>ff <cmd>Telescope find_files <cr>
-nnoremap <leader>fb <cmd>Telescope buffers <cr>
+nnoremap <leader><leader> <cmd>Telescope buffers <cr>
 nnoremap <leader>f/ <cmd>Telescope current_buffer_fuzzy_find    <cr>
 nnoremap <leader>fh <cmd>Telescope help_tags  <cr>
 nnoremap <leader>ft <cmd>Telescope tags  <cr>
@@ -239,6 +275,7 @@ nnoremap <leader>gt <cmd>Telescope git_stash <cr>
 nnoremap <leader>gs <cmd>Telescope git_status <cr>
 nnoremap <leader>gc <cmd>Telescope git_commits <cr>
 
+imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 ]]
 
 -- Treesitter configuration
@@ -338,33 +375,12 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
   },
   sources = {
+    { name = 'buffer' },
     { name = 'nvim_lsp' },
     { name = 'path' },
-    { name = 'luasnip' }
+    { name = 'luasnip' },
   },
 }
 
@@ -373,10 +389,9 @@ cmp.setup {
 --
 require("null-ls").setup({
     sources = {
-        require("null-ls").builtins.diagnostics.flake8,
+        -- require("null-ls").builtins.diagnostics.flake8,
         require("null-ls").builtins.diagnostics.pydocstyle,
     },
 })
-
 
 -- vim: ts=2 sts=2 sw=2 et

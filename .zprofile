@@ -9,6 +9,8 @@
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin:$GOPATH/bin:$HOME/.local/share/gem/ruby/3.0.0/gems/bin"
 
 # Default programs:
+# export TERM="kitty"
+export TERMINAL="gnome-terminal"
 export EDITOR="nvim"
 export BROWSER="firefox"
 
@@ -65,3 +67,14 @@ export XDG_SESSION_TYPE=wayland
 export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# if [ -z "$SSH_AUTH_SOCK" ] ; then
+# 	eval `ssh-agent -s`
+# 	ssh-add
+# fi
+#
+# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+# 	eval $(gnome-keyring-daemon --start)
+# 	export SSH_AUTH_SOCK
+# 	exec sway
+# fi
