@@ -1,6 +1,6 @@
 
 {
-	"layer": "top", // Waybar at top layer
+	"layer": "bottom", // Waybar at top layer
 	"position": "top", // Waybar at the bottom of your screen
 	"height": 24, // Waybar height
 	"modules-left": ["sway/workspaces", "sway/mode"],
@@ -58,7 +58,8 @@
 	},
 	"clock": {
 		// "timezone": "America/New_York",
-		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format": "{:%H:%M %Y-%m-%d}",
+		"tooltip-format": "<big>{:%Y %B }</big>\n<tt><small>{calendar}</small></tt>",
 		"format-alt": "{:%Y-%m-%d}"
 	},
 	"cpu": {

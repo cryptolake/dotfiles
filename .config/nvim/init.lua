@@ -2,7 +2,7 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
 vim.cmd [[
@@ -13,87 +13,94 @@ vim.cmd [[
 ]]
 
 require('packer').startup(function(use)
-	use 'wbthomason/packer.nvim' -- Package manager
-	use "tpope/vim-surround" -- surround text the vim way
+  use 'wbthomason/packer.nvim' -- Package manager
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
 
-	-- themes
-	use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+  -- themes
+  use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
-	use "mbbill/undotree" -- undo tree
-	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-	-- UI to select things (files, grep results, open buffers...)
-	use { 'nvim-telescope/telescope.nvim',
-		requires = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  }
-	}
-	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	use { "nvim-telescope/telescope-file-browser.nvim" }
-	-- git and github integration
-	use {
-		'lewis6991/gitsigns.nvim',
-	}
-	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-	-- Highlight, edit, and navigate code using a fast incremental parsing library
-	use {
-		'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
-		'nvim-treesitter/nvim-treesitter-textobjects'
-	}
+  use "mbbill/undotree" -- undo tree
+  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  -- UI to select things (files, grep results, open buffers...)
+  use { 'nvim-telescope/telescope.nvim',
+    requires = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  }
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
+  -- git and github integration
+  use {
+    'lewis6991/gitsigns.nvim',
+  }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  -- Highlight, edit, and navigate code using a fast incremental parsing library
+  use {
+    'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
+    'nvim-treesitter/nvim-treesitter-textobjects'
+  }
 
-	-- lsp stuff
-	use {
-		'neovim/nvim-lspconfig',
-		'williamboman/nvim-lsp-installer',
-	}
+  -- lsp stuff
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
   -- debugging
   use 'mfussenegger/nvim-dap'
-	-- Autocompletion
-	use {
-		'hrsh7th/nvim-cmp',
-		requires = {
-			'hrsh7th/cmp-nvim-lsp',
-			'saadparwaiz1/cmp_luasnip',
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-path',
-			'hrsh7th/cmp-buffer',
+  -- Autocompletion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
 
-		}
-	}
+    }
+  }
 
-	-- autopairs
-	use 'windwp/nvim-autopairs'
+  -- autopairs
+  use 'windwp/nvim-autopairs'
 
-	-- snippets
-	use {
-		'L3MON4D3/LuaSnip',
-		'rafamadriz/friendly-snippets',
-	}
+  -- snippets
+  use {
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+  }
 
-	-- visual stuff
-
-
-	use "tversteeg/registers.nvim"
-
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = {'kyazdani42/nvim-web-devicons', opt = true},
-	}
+  -- visual stuff
 
 
-	use 'ap/vim-css-color'
+  use "tversteeg/registers.nvim"
 
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icon
-		},
-		config = function() require'nvim-tree'.setup {} end
-	}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  }
+
+
+  use 'ap/vim-css-color'
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+  }
   -- docker
   -- use "jamestthompson3/nvim-remote-containers"
   -- null-ls
-    use 'jose-elias-alvarez/null-ls.nvim'
-	if packer_bootstrap then
-		require('packer').sync()
-	end
+  use 'jose-elias-alvarez/null-ls.nvim'
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 -- Fix tabs
@@ -281,15 +288,15 @@ imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-o
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
-	ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-	highlight = {
-		enable = true, -- false will disable the whole extension
-		disable = {"html"},
-	},
-	indent = {
-		enable = true,
-		disable = {"python"}
-	},
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true, -- false will disable the whole extension
+    disable = {"html"},
+  },
+  indent = {
+    enable = true,
+    disable = {"python"}
+  },
 }
 
 -- Diagnostic keymaps
@@ -303,28 +310,28 @@ vim.api.nvim_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()
 local lsp_installer = require'nvim-lsp-installer'
 
 local function on_attach(client, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	local opts = {noremap = true, silent = true}
+  local opts = {noremap = true, silent = true}
 
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
-	-- Mappings.
-	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	buf_set_keymap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	buf_set_keymap('n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-	buf_set_keymap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- Mappings.
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -334,22 +341,22 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local installed_servers = lsp_installer.get_installed_servers()
 for _, server in pairs(installed_servers) do
-	local opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-	if server.name == "sumneko_lua" then
-		Lua = {
-			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
-			},
-			telemetry = {
-				enable = false,
-			}
-		}
-	end
+  local opts = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+  if server.name == "sumneko_lua" then
+    Lua = {
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      telemetry = {
+        enable = false,
+      }
+    }
+  end
 
-	server:setup(opts)
+  server:setup(opts)
 end
 
 
@@ -388,10 +395,10 @@ cmp.setup {
 -- sharing, and setting up LSP sources using pure Lua.
 --
 require("null-ls").setup({
-    sources = {
-        -- require("null-ls").builtins.diagnostics.flake8,
-        require("null-ls").builtins.diagnostics.pydocstyle,
-    },
+  sources = {
+    require("null-ls").builtins.diagnostics.flake8,
+    require("null-ls").builtins.diagnostics.pydocstyle,
+  },
 })
 
 -- vim: ts=2 sts=2 sw=2 et

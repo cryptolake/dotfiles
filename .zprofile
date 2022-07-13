@@ -68,13 +68,11 @@ export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# if [ -z "$SSH_AUTH_SOCK" ] ; then
-# 	eval `ssh-agent -s`
-# 	ssh-add
-# fi
-#
-# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-# 	eval $(gnome-keyring-daemon --start)
-# 	export SSH_AUTH_SOCK
-# 	exec sway
-# fi
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+	eval `ssh-agent -s`
+	ssh-add
+fi
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+	exec sway
+fi
