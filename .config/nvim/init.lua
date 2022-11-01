@@ -48,7 +48,6 @@ require('packer').startup(function(use)
   -- lsp stuff
   use {
     'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
   }
   -- debugging
   use 'mfussenegger/nvim-dap'
@@ -156,37 +155,26 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- very useful mappings
 vim.cmd [[
-
 " nvim tree toggle
 nmap <leader>n <cmd>NvimTreeToggle<cr>
-
 " Undo tree toggle
 nmap <leader>u <cmd>UndotreeToggle<cr>
-
 " Shortcutting split navigation, saving a keypress:
 nmap <leader>w <C-w>
-
 " Spell-check set to <leader>o, 'o' for 'orthography':
 nmap <leader>o :setlocal spell! spelllang=en_us<CR>
-
-
 " These commands will navigate through buffers in order regardless of which mode you are using
 " e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
 nnoremap <leader>] :bn<CR>
 nnoremap <leader>[ :bp<CR>
-
 nnoremap <silent><leader>d :bd<CR>
-
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
 " Lsp
 nnoremap <leader>lq :LspRestart<CR>
-
 " Terminal mode
 tnoremap <Esc> <C-\><C-n>
-
 ]]
 
 --Set statusbar
@@ -255,14 +243,20 @@ require('gitsigns').setup{
   end
 }
 -- Telescope
-require('telescope').setup {}
+require('telescope').setup {
+  pickers = {
+    find_files = {
+      no_ignore = true,
+    }
+  }
+}
+
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
 
 --Add leader shortcuts
 
 vim.cmd [[
-
 nnoremap <leader>ff <cmd>Telescope find_files <cr>
 nnoremap <leader><leader> <cmd>Telescope buffers <cr>
 nnoremap <leader>f/ <cmd>Telescope current_buffer_fuzzy_find    <cr>
@@ -272,16 +266,13 @@ nnoremap <leader>fd <cmd>Telescope grep_string  <cr>
 nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles  <cr>
 nnoremap <leader>fr <cmd>lua require 'telescope'.extensions.file_browser.file_browser()  <cr>
-
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols <cr>
 nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
-
 nnoremap <leader>gb <cmd>Telescope git_branches <cr>
 nnoremap <leader>gf <cmd>Telescope git_files <cr>
 nnoremap <leader>gt <cmd>Telescope git_stash <cr>
 nnoremap <leader>gs <cmd>Telescope git_status <cr>
 nnoremap <leader>gc <cmd>Telescope git_commits <cr>
-
 imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 ]]
 
@@ -307,7 +298,6 @@ vim.api.nvim_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()
 
 -- LSP settings
 -- lsp install
-local lsp_installer = require'nvim-lsp-installer'
 
 local function on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -336,29 +326,11 @@ end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-
-local installed_servers = lsp_installer.get_installed_servers()
-for _, server in pairs(installed_servers) do
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-  if server.name == "sumneko_lua" then
-    Lua = {
-      workspace = {
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      telemetry = {
-        enable = false,
-      }
-    }
-  end
-
-  server:setup(opts)
-end
-
+require('lspconfig')['pyright'].setup{
+  on_attach = on_attach,
+}
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
