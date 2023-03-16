@@ -219,6 +219,12 @@ bindsym XF86MonBrightnessDown exec light -U 10
 #         inactive_workspace #32323200 #32323200 #5c5c5c
 #     }
 # }
+
+
+# this makes the popup window for mic access small and stickied instead of an
+# extra window, this will work until it's fixed in firefox
+for_window [title="\ -\ Sharing\ Indicator$"] floating enable, sticky enable
+
 exec mako
 exec waybar
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Gruvbox'

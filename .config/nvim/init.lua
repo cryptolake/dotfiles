@@ -1,60 +1,71 @@
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- Install package manager
+--    https://github.com/folke/lazy.nvim
+--    `:help lazy.nvim.txt` for more info
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd [[
-  augroup Packer
-  autocmd!
-  autocmd BufWritePost init.lua source <afile> | PackerCompile
-  augroup end
-]]
-
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  })
+-- NOTE: Here is where you install your plugins.
+--  You can configure plugins using the `config` key.
+--
+--  You can also configure plugins after the setup call,
+--    as they will be available in your neovim runtime.
+require('lazy').setup({
 
   -- themes
-  use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+  {"ellisonleao/gruvbox.nvim", dependencies = {"rktjmp/lush.nvim"}},
 
-  use "mbbill/undotree" -- undo tree
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+  {
+    "mbbill/undotree",
+  }, -- undo tree
+  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim',
-    requires = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  }
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use { "nvim-telescope/telescope-file-browser.nvim" }
+  { 'nvim-telescope/telescope.nvim',
+    dependencies = {  'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'  }
+  },
+  {'nvim-telescope/telescope-ui-select.nvim' },
+  {'nvim-telescope/telescope-fzf-native.nvim',
+  build = 'make',
+  },
+  { "nvim-telescope/telescope-file-browser.nvim" },
   -- git and github integration
-  use {
+  {
     'lewis6991/gitsigns.nvim',
-  }
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  },
+  { 'TimUntersberger/neogit', dependencies = 'nvim-lua/plenary.nvim' },
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use {
-    'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
+  {
+    'nvim-treesitter/nvim-treesitter', build = ':TSUpdate',
     'nvim-treesitter/nvim-treesitter-textobjects'
-  }
+  },
 
   -- lsp stuff
-  use {
+  {
     'neovim/nvim-lspconfig',
-  }
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+    },
+  },
   -- debugging
-  use 'mfussenegger/nvim-dap'
+  'mfussenegger/nvim-dap',
   -- Autocompletion
-  use {
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
@@ -62,50 +73,47 @@ require('packer').startup(function(use)
       'hrsh7th/cmp-buffer',
 
     }
-  }
+  },
 
   -- autopairs
-  use 'windwp/nvim-autopairs'
+  'windwp/nvim-autopairs',
 
   -- snippets
-  use {
+  {
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
-  }
-
+  },
   -- visual stuff
 
-
-  use "tversteeg/registers.nvim"
-
-  use {
+  {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
-  }
+    dependencies = {'kyazdani42/nvim-web-devicons', opt = true},
+  },
 
 
-  use 'ap/vim-css-color'
+  'ap/vim-css-color',
 
-  use {
+  {
     'kyazdani42/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
     config = function() require'nvim-tree'.setup {} end
-  }
-  -- docker
-  -- use "jamestthompson3/nvim-remote-containers"
+  },
   -- null-ls
-  use 'jose-elias-alvarez/null-ls.nvim'
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  'jose-elias-alvarez/null-ls.nvim',
+  {
+    "tversteeg/registers.nvim",
+    config = function()
+      require("registers").setup()
+    end,
+  },
+})
 
 -- Fix tabs
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 --Set highlight on search
 vim.o.hlsearch = true
@@ -115,6 +123,7 @@ vim.o.hlsearch = false
 
 --Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 --Enable mouse mode
 vim.o.mouse = 'a'
@@ -143,7 +152,6 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.cmd [[
 colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
 ]]
 
 -- Set completeopt to have a better completion experience
@@ -156,7 +164,7 @@ vim.g.maplocalleader = ' '
 -- very useful mappings
 vim.cmd [[
 " nvim tree toggle
-nmap <leader>n <cmd>NvimTreeToggle<cr>
+nmap <leader>n <cmd>NvimTreeFindFileToggle<cr>
 " Undo tree toggle
 nmap <leader>u <cmd>UndotreeToggle<cr>
 " Shortcutting split navigation, saving a keypress:
@@ -171,8 +179,7 @@ nnoremap <silent><leader>d :bd<CR>
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-" Lsp
-nnoremap <leader>lq :LspRestart<CR>
+
 " Terminal mode
 tnoremap <Esc> <C-\><C-n>
 ]]
@@ -200,6 +207,7 @@ vim.cmd [[
 vim.cmd [[
   autocmd TermOpen * setlocal nonumber norelativenumber
 ]]
+
 
 -- Gitsigns
 require('gitsigns').setup{
@@ -247,13 +255,25 @@ require('telescope').setup {
   pickers = {
     find_files = {
       no_ignore = true,
+    },
+    buffers =  {
+      mappings = {
+        i = {
+          ["<C-d>"] = 'delete_buffer'
+        },
+        n = {
+          ["D"] = 'delete_buffer'
+        }
+
+      }
     }
+
   }
 }
 
 -- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
-
+require('telescope').load_extension('fzf')
+require("telescope").load_extension("ui-select")
 --Add leader shortcuts
 
 vim.cmd [[
@@ -286,16 +306,30 @@ require('nvim-treesitter.configs').setup {
   },
   indent = {
     enable = true,
-    disable = {"python"}
+    -- disable = {"python", "c"}
   },
 }
 
+
+require("nvim-tree").setup({
+  sync_root_with_cwd = true,
+  filters = {
+    dotfiles = false,
+  },
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    -- update_root = true
+  },
+})
 -- Diagnostic keymaps
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
+-- Neogit
+vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>Neogit<CR>', { noremap = true, silent = true })
 -- LSP settings
 -- lsp install
 
@@ -324,16 +358,72 @@ local function on_attach(client, bufnr)
   buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+
+-- Setup mason so it can manage external tooling
+require('mason').setup()
+
+-- Enable the following language servers
+-- Feel free to add/remove any LSPs that you want here. They will automatically be installed
+local servers = { 'clangd', 'pyright', 'tsserver', 'lua_ls'}
+
+-- Ensure the servers above are installed
+require('mason-lspconfig').setup {
+  ensure_installed = servers,
+}
+
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-require('lspconfig')['pyright'].setup{
-  on_attach = on_attach,
-}
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
+-- Turn on status information
+require('fidget').setup()
+
+-- Example custom configuration for lua
+--
+-- Make runtime files discoverable to the server
+-- local runtime_path = vim.split(package.path, ';')
+-- table.insert(runtime_path, 'lua/?.lua')
+-- table.insert(runtime_path, 'lua/?/init.lua')
+
+require('lspconfig').lua_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        -- path = runtime_path,
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      -- workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = { enable = false },
+    },
+  },
+}
+
+require('lspconfig').pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      stubPath = "~/src/python-type-stubs"
+    }
+  },
+}
 
 -- luasnip setup
 -- Setup nvim-cmp.
@@ -362,6 +452,15 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
 
 -- null-ls is an attempt to bridge that gap and simplify the process of creating, 
 -- sharing, and setting up LSP sources using pure Lua.

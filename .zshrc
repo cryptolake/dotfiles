@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 
 # Path to your oh-my-zsh installation.
 
@@ -70,7 +70,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
+plugins=(git fzf asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,7 +102,8 @@ source $ZSH/oh-my-zsh.sh
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
-	rm="rm -vI" \
+	# rm="rm -vI" \
+	rm="trash" \
 	mkd="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
@@ -115,9 +116,7 @@ alias \
 	trem="transmission-remote" \
 	YT="youtube-viewer" \
 	sdn="sudo shutdown -h now" \
-	f="$FILE" \
-	e="$EDITOR" \
-	v="$EDITOR" \
+	v="nvim" \
 	p="sudo pacman" \
 	z="zathura"
 alias \
@@ -125,7 +124,3 @@ alias \
 
 
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-source /usr/share/nvm/init-nvm.sh
