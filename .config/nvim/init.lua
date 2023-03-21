@@ -25,7 +25,7 @@ require('lazy').setup({
   {"ellisonleao/gruvbox.nvim", dependencies = {"rktjmp/lush.nvim"}},
 
   {
-    "mbbill/undotree",
+    "mbbill/undotree"
   }, -- undo tree
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
