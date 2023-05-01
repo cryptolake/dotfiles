@@ -61,17 +61,22 @@ require('lazy').setup({
     },
   },
   -- debugging
-  'mfussenegger/nvim-dap',
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "jay-babu/mason-nvim-dap.nvim",
+    }
+  },
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
-
+      'uga-rosa/cmp-dictionary'
     }
   },
 
@@ -83,13 +88,12 @@ require('lazy').setup({
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
   },
-  -- visual stuff
 
+  -- visual stuff
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {'kyazdani42/nvim-web-devicons', opt = true},
   },
-
 
   'ap/vim-css-color',
 
@@ -108,6 +112,26 @@ require('lazy').setup({
       require("registers").setup()
     end,
   },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  -- Iron neovim
+  {
+    'hkupty/iron.nvim'
+  },
+
+  -- Testing
+  {
+    "nvim-neotest/neotest",
+    "nvim-neotest/neotest-python",
+  }
 })
 
 -- Fix tabs
@@ -152,6 +176,8 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.cmd [[
 colorscheme gruvbox
+highlight Normal guibg=none
+highlight NonText guibg=none
 ]]
 
 -- Set completeopt to have a better completion experience
@@ -175,7 +201,7 @@ nmap <leader>o :setlocal spell! spelllang=en_us<CR>
 " e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
 nnoremap <leader>] :bn<CR>
 nnoremap <leader>[ :bp<CR>
-nnoremap <silent><leader>d :bd<CR>
+nnoremap <silent><leader>bd :bd<CR>
 " moving text
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -287,7 +313,8 @@ nnoremap <leader>fg <cmd>Telescope live_grep  <cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles  <cr>
 nnoremap <leader>fr <cmd>lua require 'telescope'.extensions.file_browser.file_browser()  <cr>
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols <cr>
-nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
+" FIXME: workspace symbols
+" nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
 nnoremap <leader>gb <cmd>Telescope git_branches <cr>
 nnoremap <leader>gf <cmd>Telescope git_files <cr>
 nnoremap <leader>gt <cmd>Telescope git_stash <cr>
@@ -420,7 +447,10 @@ require('lspconfig').pyright.setup {
   capabilities = capabilities,
   settings = {
     python = {
-      stubPath = "~/src/python-type-stubs"
+      stubPath = "~/src/python-type-stubs",
+      analysis = {
+        autoImportCompletions = false
+      }
     }
   },
 }
@@ -446,30 +476,182 @@ cmp.setup {
     ['<C-e>'] = cmp.mapping.close(),
   },
   sources = {
-    { name = 'buffer' },
     { name = 'nvim_lsp' },
-    { name = 'path' },
     { name = 'luasnip' },
+    { name = 'path' },
   },
 }
+
+
   -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
+  cmp.setup.filetype({'gitcommit', 'markdown'}, {
     sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
       { name = 'buffer' },
+      {
+        name = 'dictionary',
+        keyword_length = 2
+      }
     })
   })
 
+local dict = require("cmp_dictionary")
+
+dict.setup({
+  -- The following are default values.
+  exact = 2,
+  first_case_insensitive = false,
+  document = false,
+  document_command = "wn %s -over",
+  async = false,
+  max_items = -1,
+  capacity = 5,
+  debug = false,
+})
+
+dict.switcher({
+  -- filetype = {
+  --   lua = "/path/to/lua.dict",
+  --   javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
+  -- },
+  -- filepath = {
+  --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
+  --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
+  -- },
+  spelllang = {
+    en = "~/.config/nvim/my.dict",
+  },
+})
 
 -- null-ls is an attempt to bridge that gap and simplify the process of creating, 
 -- sharing, and setting up LSP sources using pure Lua.
 --
-require("null-ls").setup({
-  sources = {
-    require("null-ls").builtins.diagnostics.flake8,
-    require("null-ls").builtins.diagnostics.pydocstyle,
+-- require("null-ls").setup({
+--   sources = {
+--     require("null-ls").builtins.diagnostics.flake8,
+--     -- require("null-ls").builtins.diagnostics.pydocstyle,
+--   },
+-- })
+
+
+-- nvim DAP configuration
+
+-- Automatically setup debuggers
+
+require('dap.ext.vscode').load_launchjs(nil, {})
+require("dapui").setup()
+local dap, dapui =require("dap"),require("dapui")
+dap.listeners.after.event_initialized["dapui_config"]=function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"]=function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"]=function()
+  dapui.close()
+end
+
+vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
+vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
+
+vim.keymap.set('n', '<leader>dq', function() require('dap').terminate() end)
+vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end)
+vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end)
+vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end)
+vim.keymap.set('n', '<leader>du', function() require('dap').step_out() end)
+vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
+-- vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+  require('dap.ui.widgets').hover()
+end)
+vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+  require('dap.ui.widgets').preview()
+end)
+vim.keymap.set('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end)
+vim.keymap.set('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end)
+
+
+require ('mason-nvim-dap').setup({
+    ensure_installed = {'debugpy'},
+    handlers = {
+        function(config)
+          -- all sources with no handler get passed here
+
+          -- Keep original functionality
+          require('mason-nvim-dap').default_setup(config)
+        end,
+    },
+})
+
+local iron = require("iron.core")
+local view = require("iron.view")
+
+iron.setup {
+  config = {
+    -- Whether a repl should be discarded or not
+    scratch_repl = true,
+    -- Your repl definitions come here
+    repl_definition = {
+      sh = {
+        -- Can be a table or a function that
+        -- returns a table (see below)
+        command = {"zsh"}
+      }
+    },
+    -- How the repl window will be displayed
+    -- See below for more information
+    repl_open_cmd = view.split("40%"),
+  },
+  -- Iron doesn't set keymaps by default anymore.
+  -- You can set them here or manually add keymaps to the functions in iron.core
+  keymaps = {
+    send_motion = "<leader>sc",
+    visual_send = "<leader>sc",
+    send_file = "<leader>sf",
+    send_line = "<leader>sl",
+    send_mark = "<leader>sm",
+    mark_motion = "<leader>mc",
+    mark_visual = "<leader>mc",
+    remove_mark = "<leader>md",
+    cr = "<leader>s<cr>",
+    interrupt = "<leader>s<space>",
+    exit = "<leader>sq",
+    clear = "<leader>cl",
+  },
+  -- If the highlight is on, you can change how it looks
+  -- For the available options, check nvim_set_hl
+  highlight = {
+    italic = true
+  },
+  ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+}
+
+-- iron also has a list of commands, see :h iron-commands for all available commands
+vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>')
+
+require("neotest").setup({
+  adapters = {
+    require("neotest-python")({
+      dap = { justMyCode = false },
+    }),
   },
 })
+
+
+vim.keymap.set('n', '<leader>Tr', function() require("neotest").run.run() end)
+vim.keymap.set('n', '<leader>Tf', function() require("neotest").run.run(vim.fn.expand("%")) end)
+vim.keymap.set('n', '<leader>Td', function() require("neotest").run.run({strategy = "dap"}) end)
+vim.keymap.set('n', '<leader>Tq', function() require("neotest").run.stop() end)
+vim.keymap.set('n', '<leader>Ta', function() require("neotest").run.attach() end)
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -97,19 +97,19 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias zshconfig="nvim ~/.zshrc"
+
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
-	# rm="rm -vI" \
 	rm="trash" \
 	mkd="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner"
 
-# These common commands are just too long! Abbreviate them.
 alias \
 	ka="killall" \
 	g="git" \
@@ -119,8 +119,6 @@ alias \
 	v="nvim" \
 	p="sudo pacman" \
 	z="zathura"
+
 alias \
 	mux="tmuxcator"
-
-
-
