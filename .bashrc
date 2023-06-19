@@ -65,6 +65,7 @@ alias \
 	sdn="sudo shutdown -h now" \
 	v="nvim" \
 	p="sudo pacman" \
+	l="ls -al" \
 	z="zathura"
 
 alias \

@@ -5,7 +5,7 @@
 	"height": 24, // Waybar height
 	"modules-left": ["sway/workspaces", "sway/mode"],
 	"modules-center": ["sway/window"],
-	"modules-right": ["idle_inhibitor", "pulseaudio", "network", "bluetooth" , "temperature", "backlight",  "battery",  "clock", "tray"],
+	"modules-right": ["idle_inhibitor", "pulseaudio", "network", "bluetooth" , "temperature", "sway/language", "clock", "backlight",  "battery",   "tray"],
 
 	"keyboard-state": {
 		"numlock": true,
@@ -16,9 +16,15 @@
 			"unlocked": ""
 		}
 	},
+
 	"sway/mode": {
 		"format": "<span style=\"italic\">{}</span>"
 	},
+
+	"sway/language": {
+		"format": "{short}",
+	},
+
 	"mpd": {
 		"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
 		"format-disconnected": "Disconnected ",

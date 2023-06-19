@@ -333,7 +333,7 @@ require('nvim-treesitter.configs').setup {
   },
   indent = {
     enable = true,
-    -- disable = {"python", "c"}
+    disable = {"c"}
   },
 }
 
@@ -447,8 +447,11 @@ require('lspconfig').pyright.setup {
   capabilities = capabilities,
   settings = {
     python = {
-      stubPath = "~/src/python-type-stubs",
       analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = "workspace",
+        stubPath = "~/src/python-type-stubs",
         autoImportCompletions = false
       }
     }
