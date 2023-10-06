@@ -56,8 +56,7 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      -- 'j-hui/fidget.nvim',
     },
   },
   -- debugging
@@ -104,14 +103,14 @@ require('lazy').setup({
     },
     config = function() require'nvim-tree'.setup {} end
   },
-  -- null-ls
-  'jose-elias-alvarez/null-ls.nvim',
+
   {
     "tversteeg/registers.nvim",
     config = function()
       require("registers").setup()
     end,
   },
+
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -412,7 +411,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Turn on status information
-require('fidget').setup()
+-- require('fidget').setup()
 
 -- Example custom configuration for lua
 --
@@ -525,16 +524,8 @@ dict.switcher({
   },
 })
 
--- null-ls is an attempt to bridge that gap and simplify the process of creating, 
--- sharing, and setting up LSP sources using pure Lua.
+-- TODO: linting 
 --
--- require("null-ls").setup({
---   sources = {
---     require("null-ls").builtins.diagnostics.flake8,
---     -- require("null-ls").builtins.diagnostics.pydocstyle,
---   },
--- })
-
 
 -- nvim DAP configuration
 

@@ -1,16 +1,12 @@
-# .bash_profile
+#!/bin/zsh
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
+# zsh profile file. Runs on login. Environmental variables are set here.
 
-# User specific environment and startup programs
+
+# Adds `~/.local/bin` to $PATH
 
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin:$GOPATH/bin"
 export EDITOR="nvim"
-export TERM="alacritty"
-
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -33,4 +29,14 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 
-if [ -e /home/crypto/.nix-profile/etc/profile.d/nix.sh ]; then . /home/crypto/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export SSH_ASKPASS='/usr/bin/ksshaskpass'
+export SSH_ASKPASS_REQUIRE=prefer
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+ 	exec startx
+fi
