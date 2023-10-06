@@ -356,6 +356,10 @@ vim.api.nvim_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()
 
 -- Neogit
 vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>Neogit<CR>', { noremap = true, silent = true })
+
+local neogit = require('neogit')
+neogit.setup {}
+
 -- LSP settings
 -- lsp install
 
