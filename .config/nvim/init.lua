@@ -304,6 +304,7 @@ require("telescope").load_extension("ui-select")
 vim.cmd [[
 nnoremap <leader>ff <cmd>Telescope find_files <cr>
 nnoremap <leader><leader> <cmd>Telescope buffers <cr>
+nnoremap <leader>fb <cmd>Telescope buffers <cr>
 nnoremap <leader>f/ <cmd>Telescope current_buffer_fuzzy_find    <cr>
 nnoremap <leader>fh <cmd>Telescope help_tags  <cr>
 nnoremap <leader>ft <cmd>Telescope tags  <cr>

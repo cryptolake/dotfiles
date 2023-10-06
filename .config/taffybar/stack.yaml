@@ -30,9 +30,6 @@ resolver:
 #   - auto-update
 #   - wai
 packages:
-- xmonad
-- xmonad-contrib
-- xmonad-extras
 - taffybar
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
@@ -46,9 +43,7 @@ packages:
 # extra-deps: []
 
 # Override default flag values for local packages and extra-deps
-flags:
-  xmonad-extras:
-    with_mpd: false
+# flags: {}
 
 # Extra package databases containing global packages
 # extra-package-dbs: []
