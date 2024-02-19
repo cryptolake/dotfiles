@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'):$HOME/.local/share/cargo/bin:$HOME/.luarocks/bin:$GOPATH/bin:$HOME/.config/android/cmdline-tools/latest/bin:$HOME/.config/android/platform-tools:$HOME/.config/android/build-tools/latest/bin:$HOME/.config/android/emulator"
 
 # Path to your oh-my-zsh installation.
 
@@ -138,3 +139,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+source /usr/share/nvm/init-nvm.sh

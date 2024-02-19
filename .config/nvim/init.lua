@@ -22,7 +22,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   -- themes
-  {"ellisonleao/gruvbox.nvim", dependencies = {"rktjmp/lush.nvim"}},
+  { "ellisonleao/gruvbox.nvim",
+    priority = 1000 ,
+    config = true,
+    opts = ...
+  },
 
   {
     "mbbill/undotree"
@@ -34,7 +38,7 @@ require('lazy').setup({
   },
   {'nvim-telescope/telescope-ui-select.nvim' },
   {'nvim-telescope/telescope-fzf-native.nvim',
-  build = 'make',
+    build = 'make',
   },
   { "nvim-telescope/telescope-file-browser.nvim" },
   -- git and github integration
@@ -72,7 +76,7 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
+      -- 'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'uga-rosa/cmp-dictionary'
@@ -81,12 +85,6 @@ require('lazy').setup({
 
   -- autopairs
   'windwp/nvim-autopairs',
-
-  -- snippets
-  {
-    'L3MON4D3/LuaSnip',
-    'rafamadriz/friendly-snippets',
-  },
 
   -- visual stuff
   {
@@ -130,13 +128,36 @@ require('lazy').setup({
   {
     "nvim-neotest/neotest",
     "nvim-neotest/neotest-python",
+  },
+
+  {
+    'mfussenegger/nvim-lint'
+  },
+  {
+    'github/copilot.vim'
   }
+
 })
 
 -- Fix tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+
+-- Define a function to apply settings for C files
+function setup_c_file()
+  vim.bo.shiftwidth = 2
+  vim.bo.tabstop = 2
+  vim.bo.expandtab = false
+
+  -- Add any additional commands you want to execute for C files here
+  -- vim.cmd("your_custom_command_here")
+end
+
+-- Apply the settings for C files when FileType is detected
+vim.cmd("autocmd FileType c lua setup_c_file()")
 
 --Set highlight on search
 vim.o.hlsearch = true
@@ -174,9 +195,8 @@ vim.wo.signcolumn = 'yes'
 --Set colorscheme
 vim.o.termguicolors = true
 vim.cmd [[
+set background=dark
 colorscheme gruvbox
-highlight Normal guibg=none
-highlight NonText guibg=none
 ]]
 
 -- Set completeopt to have a better completion experience
@@ -314,13 +334,13 @@ nnoremap <leader>fo <cmd>Telescope oldfiles  <cr>
 nnoremap <leader>fr <cmd>lua require 'telescope'.extensions.file_browser.file_browser()  <cr>
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols <cr>
 " FIXME: workspace symbols
-" nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
+nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols <cr>
 nnoremap <leader>gb <cmd>Telescope git_branches <cr>
 nnoremap <leader>gf <cmd>Telescope git_files <cr>
 nnoremap <leader>gt <cmd>Telescope git_stash <cr>
 nnoremap <leader>gs <cmd>Telescope git_status <cr>
 nnoremap <leader>gc <cmd>Telescope git_commits <cr>
-imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+" imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 ]]
 
 -- Treesitter configuration
@@ -464,16 +484,16 @@ require('lspconfig').pyright.setup {
 
 -- luasnip setup
 -- Setup nvim-cmp.
-local luasnip = require 'luasnip'
-require("luasnip.loaders.from_vscode").lazy_load()
+-- local luasnip = require 'luasnip'
+-- require("luasnip.loaders.from_vscode").lazy_load()
 require('nvim-autopairs').setup{}
 local cmp = require 'cmp'
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end,
+  -- },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -484,54 +504,54 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
     { name = 'path' },
   },
 }
 
 
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype({'gitcommit', 'markdown'}, {
-    sources = cmp.config.sources({
-      { name = 'buffer' },
-      {
-        name = 'dictionary',
-        keyword_length = 2
-      }
-    })
+-- Set configuration for specific filetype.
+cmp.setup.filetype({'gitcommit', 'markdown'}, {
+  sources = cmp.config.sources({
+    { name = 'buffer' },
+    {
+      name = 'dictionary',
+      keyword_length = 2
+    }
   })
+})
 
 local dict = require("cmp_dictionary")
 
 dict.setup({
-  -- The following are default values.
-  exact = 2,
-  first_case_insensitive = false,
-  document = false,
-  document_command = "wn %s -over",
+  paths = {'/usr/share/dict/words'},
+  exact_length = 2,
+  first_case_insensitive = true,
   async = false,
-  max_items = -1,
-  capacity = 5,
+  max_length_items = -1,
   debug = false,
-})
-
-dict.switcher({
-  -- filetype = {
-  --   lua = "/path/to/lua.dict",
-  --   javascript = { "/path/to/js.dict", "/path/to/js2.dict" },
-  -- },
-  -- filepath = {
-  --   [".*xmake.lua"] = { "/path/to/xmake.dict", "/path/to/lua.dict" },
-  --   ["%.tmux.*%.conf"] = { "/path/to/js.dict", "/path/to/js2.dict" },
-  -- },
-  spelllang = {
-    en = "~/.config/nvim/my.dict",
+  document = {
+    enable = true,
+    command = { "wn", "${label}", "-over" },
   },
 })
 
--- TODO: linting 
---
 
+-- linting 
+--
+require('lint').linters_by_ft = {
+  python = {'pycodestyle', 'pydocstyle'}
+
+}
+
+local id = vim.api.nvim_create_augroup("LintGroup", {})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+  group = id
+})
 -- nvim DAP configuration
 
 -- Automatically setup debuggers
@@ -578,15 +598,15 @@ end)
 
 
 require ('mason-nvim-dap').setup({
-    ensure_installed = {'debugpy'},
-    handlers = {
-        function(config)
-          -- all sources with no handler get passed here
+  ensure_installed = {'debugpy'},
+  handlers = {
+    function(config)
+      -- all sources with no handler get passed here
 
-          -- Keep original functionality
-          require('mason-nvim-dap').default_setup(config)
-        end,
-    },
+      -- Keep original functionality
+      require('mason-nvim-dap').default_setup(config)
+    end,
+  },
 })
 
 local iron = require("iron.core")
